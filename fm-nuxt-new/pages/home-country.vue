@@ -16,6 +16,7 @@
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/langfr-225px-Flag_of_France.svg.png"
           :height="150"
           :title="country.name"
+          :href="'/france'"
         />
       </v-col>
     </v-row>

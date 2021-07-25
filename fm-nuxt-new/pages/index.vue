@@ -1,15 +1,15 @@
 <template>
   <div>
     <Navbar />
-    <home-country />
+    <home-choice-team />
   </div>
 </template>
 
 <script>
 import Navbar from '~/components/Navbar/Navbar.vue'
-import HomeCountry from '~/pages/home-country'
+import HomeChoiceTeam from '~/pages/home-choice-team'
 
 export default {
-  components: { HomeCountry, Navbar }
+  components: { HomeChoiceTeam, Navbar }
 }
 </script>

@@ -5,7 +5,7 @@
       :height="height"
       class="grey darken-4"
     />
-    <v-card-title class="text-h6 text-center">
+    <v-card-title :href="href" class="text-h6 text-center">
       {{ title }}
     </v-card-title>
   </v-card>
@@ -17,7 +17,8 @@ export default {
   props: {
     src: String,
     height: Number,
-    title: String
+    title: String,
+    href: String
   }
 }
 </script>
