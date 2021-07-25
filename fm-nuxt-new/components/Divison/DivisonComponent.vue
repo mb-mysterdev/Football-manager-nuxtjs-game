@@ -3,10 +3,11 @@
     <v-img
       :src="src"
       :height="height"
+      :width="width"
       class="grey darken-4"
     />
     <v-card-title class="text-h6 text-center">
-      <NuxtLink :to="'/country/'+title">
+      <NuxtLink :to="'/division/'+title">
         {{ title }}
       </NuxtLink>
     </v-card-title>
@@ -15,8 +16,9 @@
 
 <script>
 export default {
-  name: 'Country',
+  name: 'DivisonComponent',
   props: {
+    width: Number,
     src: String,
     height: Number,
     title: String
