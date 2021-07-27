@@ -109,6 +109,10 @@
       <path value="$PROJECT_DIR$/fm-lumen/vendor/myclabs/deep-copy" />
       <path value="$PROJECT_DIR$/fm-lumen/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/fm-lumen/vendor/nikic/fast-route" />
+      <path value="$PROJECT_DIR$/fm-lumen/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/fm-lumen/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/fm-lumen/vendor/flipbox/lumen-generator" />
+      <path value="$PROJECT_DIR$/fm-lumen/vendor/classpreloader/classpreloader" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

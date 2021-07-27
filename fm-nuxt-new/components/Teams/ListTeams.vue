@@ -15,7 +15,6 @@
       <template #[getItemLevels()]="{ item }">
         <v-chip
           :color="getColor(item.levels)"
-          dark
         >
           {{ item.levels }}
         </v-chip>

@@ -1,30 +1,55 @@
 <template>
-  <v-card class="overflow-hidden">
-    <v-app-bar>
-      <v-app-bar-nav-icon />
-
-      <v-app-bar-title>Title</v-app-bar-title>
-
+  <div>
+    <v-app-bar
+      color="accent-4"
+      dense
+      height="20px"
+      class="text-sm-body-2"
+    >
+      <div>Niveau : 3</div>
       <v-spacer />
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+      <div>Popularité : 50</div>
+      <v-spacer />
+      <div>Trésorie : 500.00 €</div>
     </v-app-bar>
-  </v-card>
+    <v-app-bar
+      color="accent-4"
+      dense
+      height="70px"
+    >
+      <v-tabs align-with-title>
+        <v-tab>
+          <nuxt-link to="/">
+            Home
+          </nuxt-link>
+        </v-tab>
+        <v-tab>
+          <nuxt-link to="/team/1">
+            Equipe
+          </nuxt-link>
+        </v-tab>
+        <v-tab>
+          <nuxt-link to="/competition">
+            Compétition
+          </nuxt-link>
+        </v-tab>
+        <v-tab>Transfert</v-tab>
+      </v-tabs>
+    </v-app-bar>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  data: () => ({
+    items: [
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me 2' }
+    ]
+  })
 }
 </script>
 

@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/fm-lumen/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/brick/math" />
+      <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/classpreloader/classpreloader" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/doctrine/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/doctrine/instantiator" />
@@ -15,6 +16,7 @@
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/dragonmantank/cron-expression" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/egulias/email-validator" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/fakerphp/faker" />
+      <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/flipbox/lumen-generator" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/graham-campbell/result-type" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/hamcrest/hamcrest-php" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/illuminate/auth" />
@@ -44,6 +46,7 @@
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/illuminate/validation" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/illuminate/view" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/laravel/lumen-framework" />
+      <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/laravel/ui" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/mockery/mockery" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/myclabs/deep-copy" />
@@ -68,6 +71,7 @@
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/psr/event-dispatcher" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/psy/psysh" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/ramsey/collection" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/ramsey/uuid" />
       <excludeFolder url="file://$MODULE_DIR$/fm-lumen/vendor/sebastian/cli-parser" />
