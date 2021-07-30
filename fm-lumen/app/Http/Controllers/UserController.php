@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-class PlayerController extends Controller
+use App\Models\User;
+
+class UserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -14,7 +16,7 @@ class PlayerController extends Controller
         //
     }
 
-    public function show(){
-        return 'hello';
+    public function show($id){
+        return User::find($id);
     }
 }

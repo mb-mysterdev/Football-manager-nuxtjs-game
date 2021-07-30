@@ -3,7 +3,7 @@
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
-class PlayersTest extends TestCase
+class UsersTest extends TestCase
 {
     /**
      * A basic test example.
@@ -12,8 +12,8 @@ class PlayersTest extends TestCase
      */
     public function testExample()
     {
-        $response = $this->json('GET','players/1');
+        $this->json('GET','/api/users/1');
 
-        dd($response->response);
+        $this->assertResponseOk();
     }
 }
