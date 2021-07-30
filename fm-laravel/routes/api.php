@@ -20,5 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-    $router->get('/users/{id}',  [UserController::class, 'show']);
-    $router->post('/users', ['uses' => 'UserController@create']);
+$router->get('/users/{id}',  [UserController::class, 'show']);
+$router->post('/users',  [UserController::class, 'create']);

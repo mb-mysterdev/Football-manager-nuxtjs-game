@@ -148,9 +148,9 @@ export default {
   },
   methods: {
     validate () {
-      if (this.$refs.loginForm.validate()) {
-        // submit form to server/API here...
-      }
+      // if (this.$refs.loginForm.validate()) {
+      this.$axios.post('http://localhost/users', { user_name: 'test', user_mail: 'f', user_mdp: 'dd' })
+      // }
     },
     reset () {
       this.$refs.form.reset()

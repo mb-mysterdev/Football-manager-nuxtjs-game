@@ -1,11 +1,12 @@
 <?php
 
 use App\Models\User;
-use Laravel\Lumen\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UserFeatureTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function setUp(): void
     {
@@ -18,16 +19,15 @@ class UserFeatureTest extends TestCase
     public function testGetUserById()
     {
         $user = User::factory()->create();
-        $response = $this->json('GET',"/api/users/$user->user_id");
-        $response->assertResponseOk();
-        $response->seeJsonEquals($user->toArray());
+        $this->getJson("/api/users/$user->user_id")
+            ->assertStatus(200)
+        ->assertJson($user->toArray());
     }
 
     public function testCreateUser(){
-        $response = $this->json('POST',"/api/users", ['user_name' => 'Toto','user_mail'=> 'toto@gmail.com',
-            'user_mdp'=> 'test']);
-        $response->assertResponseOk();
-        $response->seeJsonEquals(['dd']);
-
+        $this->postJson("/api/users", ['user_name' => 'Toto','user_mail'=> 'toto@gmail.com',
+            'user_mdp'=> 'test'])
+        ->assertStatus(201);
+        $this->assertDatabaseHas('users',['user_name'=>'Toto']);
     }
 }

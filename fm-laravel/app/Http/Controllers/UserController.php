@@ -22,10 +22,6 @@ class UserController extends Controller
     }
 
     public function create(Request $request){
-        $user = new User();
-        $user->user_name = $request->user_name;
-        dd($user);
-        $user->save();
-//        dd(User::firstOrCreate(['f']));
+        return User::create($request->all());
     }
 }
