@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import HomeChoiceTeam from '~/pages/home-choice-team'
+import HomeChoiceTeam from '@/pages/user/home-choice-team'
 
 export default {
   components: { HomeChoiceTeam }

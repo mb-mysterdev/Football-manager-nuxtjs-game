@@ -13,11 +13,9 @@ class UsersTest extends TestCase
     }
 
     /**
-     * A basic test example.
-     *
      * @return void
      */
-    public function testExample()
+    public function getUserById()
     {
         $user = User::factory()->create();
         $response = $this->json('GET',"/api/users/$user->user_id");

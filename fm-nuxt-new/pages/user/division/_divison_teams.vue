@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ListTeams from '~/components/Teams/ListTeams'
+import ListTeams from '@/components/Teams/ListTeams'
 export default {
   name: 'DivisonTeams',
   components: { ListTeams }

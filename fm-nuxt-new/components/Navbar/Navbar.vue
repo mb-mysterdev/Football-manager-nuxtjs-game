@@ -19,17 +19,17 @@
     >
       <v-tabs align-with-title>
         <v-tab>
-          <nuxt-link to="/">
+          <nuxt-link to="/user">
             Home
           </nuxt-link>
         </v-tab>
         <v-tab>
-          <nuxt-link to="/team/1">
+          <nuxt-link to="/user/team/1">
             Equipe
           </nuxt-link>
         </v-tab>
         <v-tab>
-          <nuxt-link to="/competition">
+          <nuxt-link to="/user/competition">
             Compétition
           </nuxt-link>
         </v-tab>

@@ -24,14 +24,13 @@
 </template>
 
 <script>
-import Country from '../components/Country/Country'
+import Country from '../../components/Country/Country'
 export default {
   name: 'HomeCountry',
   components: { Country },
   data () {
     return {
       search: '',
-      // eslint-disable-next-line no-dupe-keys
       countries: { 1: { name: 'France' }, 2: { name: 'Belgique' }, 3: { name: 'Allemagne' }, 4: { name: 'Espagne' } }
     }
   },

@@ -7,7 +7,7 @@
       class="grey darken-4"
     />
     <v-card-title class="text-h6 text-center">
-      <NuxtLink :to="'/division/'+title">
+      <NuxtLink :to="'user/division/'+title">
         {{ title }}
       </NuxtLink>
     </v-card-title>

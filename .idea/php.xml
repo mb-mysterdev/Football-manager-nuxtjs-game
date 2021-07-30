@@ -113,6 +113,8 @@
       <path value="$PROJECT_DIR$/fm-lumen/vendor/psy/psysh" />
       <path value="$PROJECT_DIR$/fm-lumen/vendor/flipbox/lumen-generator" />
       <path value="$PROJECT_DIR$/fm-lumen/vendor/classpreloader/classpreloader" />
+      <path value="$PROJECT_DIR$/fm-lumen/vendor/fruitcake/laravel-cors" />
+      <path value="$PROJECT_DIR$/fm-lumen/vendor/asm89/stack-cors" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import DivisonComponent from '~/components/Divison/DivisonComponent'
+import DivisonComponent from '@/components/Divison/DivisonComponent'
 export default {
   name: 'CountryDivison',
   components: { DivisonComponent }
