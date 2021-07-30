@@ -36,4 +36,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'user_mdp',
     ];
+
+    /**
+     * Get all teams in connection with.
+     */
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
+    }
 }

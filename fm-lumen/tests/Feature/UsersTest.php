@@ -1,10 +1,17 @@
 <?php
 
+use App\Models\User;
 use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\DatabaseTransactions;
 
 class UsersTest extends TestCase
 {
+    use DatabaseMigrations;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+    }
+
     /**
      * A basic test example.
      *
@@ -12,8 +19,9 @@ class UsersTest extends TestCase
      */
     public function testExample()
     {
-        $this->json('GET','/api/users/1');
-
-        $this->assertResponseOk();
+        $user = User::factory()->create();
+        $response = $this->json('GET',"/api/users/$user->user_id");
+        $response->assertResponseOk();
+        $response->seeJsonEquals($user->toArray());
     }
 }
