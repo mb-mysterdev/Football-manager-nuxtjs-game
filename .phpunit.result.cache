@@ -1,1 +1,1 @@
-{"version":1,"defects":{"PlayersTest::testExample":5,"UsersTest::testExample":4},"times":{"PlayersTest::testExample":0.152,"UsersTest::testExample":0.624}}
+{"version":1,"defects":{"PlayersTest::testExample":5,"UsersTest::testExample":4,"UserFeatureTest::testCreateUser":3},"times":{"PlayersTest::testExample":0.152,"UsersTest::testExample":0.624,"UserFeatureTest::testGetUserById":2.518,"UserFeatureTest::testCreateUser":0.74}}
