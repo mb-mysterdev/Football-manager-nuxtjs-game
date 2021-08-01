@@ -18,7 +18,7 @@ class UserController extends Controller
     }
 
     public function show($id){
-        return User::find($id);
+        return User::find($id)->with('teams')->get();
     }
 
     public function create(Request $request){

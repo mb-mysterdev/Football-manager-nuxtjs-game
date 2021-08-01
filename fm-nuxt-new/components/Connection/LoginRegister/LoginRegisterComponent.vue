@@ -56,11 +56,8 @@
             <v-card-text>
               <v-form ref="registerForm" v-model="valid" lazy-validation>
                 <v-row>
-                  <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="firstName" :rules="[rules.required]" label="First Name" maxlength="20" required />
-                  </v-col>
-                  <v-col cols="12" sm="6" md="6">
-                    <v-text-field v-model="lastName" :rules="[rules.required]" label="Last Name" maxlength="20" required />
+                  <v-col cols="12" sm="12" md="12">
+                    <v-text-field v-model="name" :rules="[rules.required]" label="Name" maxlength="20" required />
                   </v-col>
                   <v-col cols="12">
                     <v-text-field v-model="email" :rules="emailRules" label="E-mail" required />
@@ -119,8 +116,7 @@ export default {
     ],
     valid: true,
 
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     password: '',
     verify: '',
@@ -148,9 +144,16 @@ export default {
   },
   methods: {
     validate () {
-      // if (this.$refs.loginForm.validate()) {
-      this.$axios.post('http://localhost/users', { user_name: 'test', user_mail: 'f', user_mdp: 'dd' })
-      // }
+      // Register
+      if (this.tab) {
+        // if (this.$refs.loginForm.validate()) {
+        this.$axios.post('http://localhost/api/auth/register', { name: this.name, email: this.email, password: this.password })
+        // }
+      }
+
+      if (!this.tab) {
+        this.$axios.post('http://localhost/api/auth/login', { email: this.loginEmail, password: this.loginPassword })
+      }
     },
     reset () {
       this.$refs.form.reset()

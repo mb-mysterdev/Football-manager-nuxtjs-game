@@ -25,9 +25,9 @@ class UserFeatureTest extends TestCase
     }
 
     public function testCreateUser(){
-        $this->postJson("/api/users", ['user_name' => 'Toto','user_mail'=> 'toto@gmail.com',
-            'user_mdp'=> 'test'])
+        $this->postJson("/api/users", ['name' => 'Toto','email'=> 'toto@gmail.com',
+            'password'=> 'test'])
         ->assertStatus(201);
-        $this->assertDatabaseHas('users',['user_name'=>'Toto']);
+        $this->assertDatabaseHas('users',['name'=>'Toto']);
     }
 }
