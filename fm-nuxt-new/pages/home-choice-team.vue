@@ -20,29 +20,15 @@
 </template>
 
 <script>
-import HomeCountry from '@/pages/user/home-country'
-import HomeEligibleTeams from '@/pages/user/home-eligible-teams'
+import HomeCountry from '@/pages/home-country'
+import HomeEligibleTeams from '@/pages/home-eligible-teams'
 export default {
   name: 'HomeChoiceTeam',
   components: { HomeEligibleTeams, HomeCountry },
   data () {
     return {
-      user: {
-        type: Object
-      },
       radioGroup: 1,
       listDisplayBy: [{ id: 1, name: 'Available Team' }, { id: 2, name: 'Country' }]
-    }
-  },
-  async mounted () {
-    await this.getUser()
-    console.log(this.user)
-  },
-  methods: {
-    async getUser () {
-      await this.$axios.get('http://localhost/api/users/1').then((res) => {
-        this.user = res.data
-      })
     }
   }
 }

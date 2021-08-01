@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Country from '../../components/Country/Country'
+import Country from '~/components/Country/Country'
 export default {
   name: 'HomeCountry',
   components: { Country },

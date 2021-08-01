@@ -4,13 +4,9 @@
       color="accent-4"
       dense
       height="20px"
-      class="text-sm-body-2"
+      class="text-sm-body-2 d-flex justify-center"
     >
-      <div>Niveau : 3</div>
-      <v-spacer />
-      <div>Popularité : 50</div>
-      <v-spacer />
-      <div>Trésorie : 500.00 €</div>
+      <team-speed-info-component />
     </v-app-bar>
     <v-app-bar
       color="accent-4"
@@ -19,29 +15,31 @@
     >
       <v-tabs align-with-title>
         <v-tab>
-          <nuxt-link to="/user">
+          <nuxt-link to="/">
             Home
           </nuxt-link>
         </v-tab>
+        <!--        <v-tab>-->
+        <!--          <nuxt-link to="/team/1">-->
+        <!--            Equipe-->
+        <!--          </nuxt-link>-->
+        <!--        </v-tab>-->
         <v-tab>
-          <nuxt-link to="/user/team/1">
-            Equipe
+          <nuxt-link to="/ranking">
+            Classement
           </nuxt-link>
         </v-tab>
-        <v-tab>
-          <nuxt-link to="/user/competition">
-            Compétition
-          </nuxt-link>
-        </v-tab>
-        <v-tab>Transfert</v-tab>
+        <!--        <v-tab>Transfert</v-tab>-->
       </v-tabs>
     </v-app-bar>
   </div>
 </template>
 
 <script>
+import TeamSpeedInfoComponent from '@/components/Teams/Team/TeamSpeedInfoComponent'
 export default {
   name: 'Navbar',
+  components: { TeamSpeedInfoComponent },
   data: () => ({
     items: [
       { title: 'Click Me' },

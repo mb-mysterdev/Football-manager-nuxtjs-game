@@ -9,21 +9,21 @@
         #[getItemName()]="{ item }"
       >
         <div @click="getTeamInfo(item)">
-          {{ item.name }}
+          {{ item.team_name }}
         </div>
       </template>
 
-      <template #[getItemLevels()]="{ item }">
+      <template #[getItemPower()]="{ item }">
         <v-chip
-          :color="getColor(item.levels)"
+          :color="getColor(item.team_power)"
         >
-          {{ item.levels }}
+          {{ item.team_power }}
         </v-chip>
       </template>
 
       <template #[getItemObjective()]="{ item }">
-        <div v-for="i in item.objective" :key="i.name">
-          {{ i.name }} : {{ i.classment }}
+        <div v-for="i in item.team_objective" :key="i.name">
+          {{ i.name }} : {{ i.classement }}
         </div>
       </template>
       <template #top>
@@ -48,7 +48,9 @@
         </v-row>
       </template>
       <template #[getItemChoice()]="{ item }">
-        <v-btn>Choice {{ item.choice }}</v-btn>
+        <v-btn @click="choiceMyTeam(item)">
+          Choice {{ item.choice }}
+        </v-btn>
       </template>
     </v-data-table>
   </div>
@@ -62,49 +64,19 @@ export default {
       historyOfClub: false,
       labelOfHistoryTeam: 'Teams',
       dialog: false,
+      teams: [],
       headers: [
         {
           text: 'Team',
           align: 'start',
           sortable: false,
-          value: 'name'
+          value: 'team_name'
         },
-        { text: 'Levels', value: 'levels' },
-        { text: 'Budget (M€)', value: 'budget' },
-        { text: 'effective', value: 'effective' },
-        { text: 'objective', value: 'objective' },
+        { text: 'Power', value: 'team_power' },
+        { text: 'Budget (M€)', value: 'team_budget' },
+        { text: 'effective', value: 'team_effective' },
+        { text: 'objective', value: 'team_objective' },
         { text: '', value: 'choice' }
-      ],
-      teams: [
-        {
-          id: 1,
-          name: 'Frozen Yogurt',
-          levels: 93,
-          budget: 6.0,
-          effective: 24,
-          objective: { 1: { name: 'Championnat de France', classment: 1 }, 2: { name: 'Champion des leagues', classment: 16 } },
-          choice: 1
-        },
-        {
-          id: 2,
-          name: 'Ice cream sandwich',
-          levels: 55,
-          budget: 9.0,
-          effective: 37,
-          objective: { 1: { name: 'Championnat de France', classment: 1 }, 2: { name: 'Champion des leagues', classment: 16 } },
-          choice: 1
-
-        },
-        {
-          id: 3,
-          name: 'Eclair',
-          levels: 78,
-          budget: 16.0,
-          effective: 23,
-          objective: { 1: { name: 'Championnat de France', classment: 1 }, 2: { name: 'Champion des leagues', classment: 16 } },
-          choice: 1
-
-        }
       ]
     }
   },
@@ -116,24 +88,46 @@ export default {
       return 'Teams'
     }
   },
+  async mounted () {
+    await this.fetchTeams()
+    this.transformTeamObjectiveStringToObject()
+    console.log(this.teams)
+  },
   methods: {
-    getItemLevels () {
-      return 'item.levels'
+    transformTeamObjectiveStringToObject () {
+      Object.assign(this.teams, this.teams.map(function (team) {
+        team.team_objective = JSON.parse(team.team_objective)
+        return team
+      }))
+    },
+    async fetchTeams () {
+      await this.$axios.get('http://localhost/api/teams').then((res) => { this.teams = res.data })
+    },
+    choiceMyTeam (item) {
+      this.$axios.post('http://localhost/api/team-user',
+        {
+          user_id: 1,
+          team_id: item.team_id,
+          team_user_budget: item.team_budget,
+          team_user_power: item.team_power
+        })
+    },
+    getItemPower () {
+      return 'item.team_power'
     },
     getItemObjective () {
-      return 'item.objective'
+      return 'item.team_objective'
     },
     getItemChoice () {
       return 'item.choice'
     },
     getItemName () {
-      return 'item.name'
+      return 'item.team_name'
     },
     getColor (levels) {
       if (levels > 90) { return 'red' } else if (levels > 80) { return 'pink' } else if (levels > 60) { return 'orange' } else { return 'green' }
     },
     getTeamInfo (team) {
-      console.log(team)
       this.dialog = true
     }
   }

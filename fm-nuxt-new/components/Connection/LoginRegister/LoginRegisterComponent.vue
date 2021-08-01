@@ -115,7 +115,7 @@ export default {
       { name: 'Register', icon: 'mdi-account-outline' }
     ],
     valid: true,
-
+    error: '',
     name: '',
     email: '',
     password: '',
@@ -153,6 +153,7 @@ export default {
 
       if (!this.tab) {
         this.$axios.post('http://localhost/api/auth/login', { email: this.loginEmail, password: this.loginPassword })
+        this.$router.push('/inspire')
       }
     },
     reset () {
@@ -164,7 +165,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
