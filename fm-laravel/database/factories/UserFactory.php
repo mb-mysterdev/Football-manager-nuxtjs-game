@@ -25,6 +25,8 @@ class UserFactory extends Factory
             'name' => $this->faker->title,
             'email' => $this->faker->unique()->safeEmail,
             'password' => $this->faker->password(),
+            'created_at' => new \DateTime(),
+            'updated_at' => new \DateTime()
         ];
     }
 }

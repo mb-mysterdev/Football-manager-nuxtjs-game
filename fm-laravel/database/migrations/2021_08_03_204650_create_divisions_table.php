@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateTableTeamsToAddBudgetPowerObjectiveFields extends Migration
+class CreateDivisionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class UpdateTableTeamsToAddBudgetPowerObjectiveFields extends Migration
      */
     public function up()
     {
-        Schema::table('teams', function (Blueprint $table) {
-            $table->bigInteger('team_power');
-            $table->bigInteger('team_budget');
-            $table->bigInteger('team_effective');
-            $table->json('team_objective');
+        Schema::create('divisions', function (Blueprint $table) {
+            $table->bigIncrements('division_id');
+            $table->string('division_name');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +27,6 @@ class UpdateTableTeamsToAddBudgetPowerObjectiveFields extends Migration
      */
     public function down()
     {
-
+        Schema::dropIfExists('divisions');
     }
 }

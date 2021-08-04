@@ -1,11 +1,11 @@
 <template>
-  <competition-component />
+  <ranking-component />
 </template>
 
 <script>
-import CompetitionComponent from '@/components/Competition/CompetitionComponent'
+import RankingComponent from '@/components/Ranking/RankingComponent'
 export default {
   name: 'Ranking',
-  components: { CompetitionComponent }
+  components: { RankingComponent }
 }
 </script>
