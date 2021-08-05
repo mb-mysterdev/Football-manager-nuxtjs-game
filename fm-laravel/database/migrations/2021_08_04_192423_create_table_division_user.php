@@ -14,13 +14,13 @@ class CreateTableDivisionUser extends Migration
     public function up()
     {
         Schema::create('division_user', function (Blueprint $table) {
-            $table->bigIncrements('division_user_id');
-            $table->bigInteger('division_user_division')->unsigned();
-            $table->foreign('division_user_division')
+            $table->bigIncrements('du_id');
+            $table->bigInteger('du_division')->unsigned();
+            $table->foreign('du_division')
                 ->references('division_id')
                 ->on('divisions');
-            $table->bigInteger('division_user_user')->unsigned();
-            $table->foreign('division_user_user')
+            $table->bigInteger('du_user')->unsigned();
+            $table->foreign('du_user')
                 ->references('id')
                 ->on('users');
             $table->timestamps();

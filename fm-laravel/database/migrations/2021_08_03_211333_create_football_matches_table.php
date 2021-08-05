@@ -14,20 +14,20 @@ class CreateFootballMatchesTable extends Migration
     public function up()
     {
         Schema::create('football_matches', function (Blueprint $table) {
-            $table->bigIncrements('football_match_id');
-            $table->bigInteger('football_match_first_club')->unsigned();
-            $table->foreign('football_match_first_club')
+            $table->bigIncrements('fm_id');
+            $table->bigInteger('fm_first_club')->unsigned();
+            $table->foreign('fm_first_club')
             ->references('team_id')
                 ->on('teams');
-            $table->bigInteger('football_match_second_club')->unsigned();
-            $table->foreign('football_match_second_club')
+            $table->bigInteger('fm_second_club')->unsigned();
+            $table->foreign('fm_second_club')
                 ->references('team_id')
                 ->on('teams');
-            $table->bigInteger('football_match_user')->unsigned();
-            $table->foreign('football_match_user')
+            $table->bigInteger('fm_user')->unsigned();
+            $table->foreign('fm_user')
                 ->references('id')
                 ->on('users');
-            $table->dateTime('football_match_date');
+            $table->dateTime('fm_date');
             $table->timestamps();
         });
     }

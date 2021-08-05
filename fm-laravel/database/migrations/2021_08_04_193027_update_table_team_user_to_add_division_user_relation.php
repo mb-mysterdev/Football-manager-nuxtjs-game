@@ -14,9 +14,9 @@ class UpdateTableTeamUserToAddDivisionUserRelation extends Migration
     public function up()
     {
         Schema::table('team_user', function (Blueprint $table) {
-            $table->bigInteger('team_user_division')->unsigned();
-            $table->foreign('team_user_division')
-                ->references('division_user_id')
+            $table->bigInteger('tu_division')->unsigned();
+            $table->foreign('tu_division')
+                ->references('du_id')
                 ->on('division_user');
         });
     }

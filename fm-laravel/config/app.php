@@ -164,7 +164,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+        // iseed
+        Orangehill\Iseed\IseedServiceProvider::class,
         // JWT
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         /*

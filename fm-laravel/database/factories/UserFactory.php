@@ -24,7 +24,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->title,
             'email' => $this->faker->unique()->safeEmail,
-            'password' => $this->faker->password(),
+            'password' => bcrypt(123456),
             'created_at' => new \DateTime(),
             'updated_at' => new \DateTime()
         ];

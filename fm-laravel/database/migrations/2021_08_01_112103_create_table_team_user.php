@@ -14,17 +14,17 @@ class CreateTableTeamUser extends Migration
     public function up()
     {
         Schema::create('team_user', function (Blueprint $table) {
-            $table->bigIncrements('team_user_id');
-            $table->bigInteger('team_user_user_id')->unsigned();
-            $table->bigInteger('team_user_team_id')->unsigned();
-            $table->foreign('team_user_user_id')
+            $table->bigIncrements('tu_id');
+            $table->bigInteger('tu_user')->unsigned();
+            $table->bigInteger('tu_team')->unsigned();
+            $table->foreign('tu_user')
                 ->references('id')
                 ->on('users');
-            $table->foreign('team_user_team_id')
+            $table->foreign('tu_team')
                 ->references('team_id')
                 ->on('teams');
-            $table->bigInteger('team_user_budget');
-            $table->bigInteger('team_user_power');
+            $table->bigInteger('tu_budget');
+            $table->bigInteger('tu_power');
             $table->timestamps();
         });
     }

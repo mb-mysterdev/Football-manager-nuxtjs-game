@@ -11,6 +11,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
+        "orangehill/iseed": "^3.0",
         "tymon/jwt-auth": "dev-develop"
     },
     "require-dev": {

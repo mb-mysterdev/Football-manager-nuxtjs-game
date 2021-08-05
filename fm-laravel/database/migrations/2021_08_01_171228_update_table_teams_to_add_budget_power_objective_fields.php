@@ -16,7 +16,6 @@ class UpdateTableTeamsToAddBudgetPowerObjectiveFields extends Migration
         Schema::table('teams', function (Blueprint $table) {
             $table->bigInteger('team_power');
             $table->bigInteger('team_budget');
-            $table->bigInteger('team_effective');
             $table->json('team_objective');
         });
     }

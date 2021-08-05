@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDivisionIdToTeams extends Migration
+class CreateTableDivisionTeams extends Migration
 {
     /**
      * Run the migrations.
@@ -14,17 +14,18 @@ class AddDivisionIdToTeams extends Migration
     public function up()
     {
         Schema::create('division_teams', function (Blueprint $table) {
-            $table->bigIncrements('division_team_id');
-            $table->bigInteger('division_team_division')
+            $table->bigIncrements('dt_id');
+            $table->bigInteger('dt_division')
                 ->unsigned();
-            $table->foreign('division_team_division')
+            $table->foreign('dt_division')
                 ->references('division_id')
                 ->on('divisions');
-            $table->bigInteger('division_team_team')
+            $table->bigInteger('dt_team')
                 ->unsigned();
-            $table->foreign('division_team_team')
+            $table->foreign('dt_team')
                 ->references('team_id')
                 ->on('teams');
+            $table->timestamps();
         });
     }
 
