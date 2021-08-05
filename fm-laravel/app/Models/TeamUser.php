@@ -8,14 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class TeamUser extends Model
 {
-    protected $primaryKey = 'team_user_id';
+    protected $primaryKey = 'tu_id';
     protected $table = 'team_user';
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      **/
     protected $fillable = [
-        'team_user_id','user_id', 'team_id','team_user_budget','team_user_power'
+        'tu_id','tu_user', 'tu_team','tu_budget','tu_power','tu_division'
     ];
+
 }

@@ -19,7 +19,7 @@ class UserFeatureTest extends TestCase
     public function testGetUserById()
     {
         $user = User::factory()->create();
-        $this->getJson("/api/users/$user->user_id")
+        $this->getJson("/api/users/$user->id")
             ->assertStatus(200)
         ->assertJson($user->toArray());
     }

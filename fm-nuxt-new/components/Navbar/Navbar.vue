@@ -6,7 +6,7 @@
       height="20px"
       class="text-sm-body-2 d-flex justify-center"
     >
-      <team-speed-info-component />
+      <team-speed-info-component :team-name="teams.tu_name" :team-power="teams.tu_power" :team-budget="teams.tu_budget" :team-ranking-in-official-division="3" />
     </v-app-bar>
     <v-app-bar
       color="accent-4"
@@ -46,8 +46,25 @@ export default {
       { title: 'Click Me' },
       { title: 'Click Me' },
       { title: 'Click Me 2' }
-    ]
-  })
+    ],
+    user: {
+      type: Object
+    },
+    teams: {
+      type: Object
+    }
+  }),
+  async mounted () {
+    await this.getUser()
+  },
+  methods: {
+    async getUser () {
+      await this.$axios.get('http://localhost/api/users/1').then((res) => {
+        this.user = res.data[0]
+        this.teams = this.user.teams[0]
+      })
+    }
+  }
 }
 </script>
 

@@ -33,6 +33,8 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $hidden = [
         'password',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -60,6 +62,18 @@ class User extends Authenticatable implements JWTSubject
      */
     public function teams()
     {
-        return $this->hasMany(TeamUser::class);
+        return $this->hasMany(TeamUser::class,'tu_user','id');
+    }
+
+    /**
+     * Get all teams in connection with.
+     */
+    public function divisionUser()
+    {
+        return $this->hasMany(DivisionUser::class,'du_user','id');
+    }
+
+    public function team(){
+        return $this->belongsToMany(Team::class,null,'tu_user','tu_team');
     }
 }

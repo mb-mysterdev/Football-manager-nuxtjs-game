@@ -106,10 +106,10 @@ export default {
     choiceMyTeam (item) {
       this.$axios.post('http://localhost/api/team-user',
         {
-          user_id: 1,
+          id: 1,
           team_id: item.team_id,
-          team_user_budget: item.team_budget,
-          team_user_power: item.team_power
+          tu_budget: item.team_budget,
+          tu_power: item.team_power
         })
     },
     getItemPower () {

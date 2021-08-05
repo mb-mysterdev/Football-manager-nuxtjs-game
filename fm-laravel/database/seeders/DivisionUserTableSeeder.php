@@ -24,6 +24,8 @@ class DivisionUserTableSeeder extends Seeder
                 'du_id' => 1,
                 'du_division' => 1,
                 'du_user' => 1,
+                'du_taken' => 1,
+                'du_team' => 1,
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),
             ),

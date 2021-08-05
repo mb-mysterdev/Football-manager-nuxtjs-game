@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Team extends Model
+class Division extends Model
 {
-    protected $primaryKey = 'team_id';
-    protected $table = 'teams';
+    use HasFactory;
+
+    protected $table = 'divisions';
+    protected $primaryKey = 'division_id';
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -17,8 +21,4 @@ class Team extends Model
         'created_at',
         'updated_at'
     ];
-
-    public function user(){
-        return $this->belongsToMany(User::class,null,'tu_team','tu_user');
-    }
 }

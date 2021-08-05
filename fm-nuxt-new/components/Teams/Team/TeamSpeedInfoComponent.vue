@@ -2,6 +2,13 @@
   <div class="text-center">
     <v-chip
       class="ma-2"
+      color="red"
+      text-color="white"
+    >
+      {{ teamName }}
+    </v-chip>
+    <v-chip
+      class="ma-2"
       color="blue"
       text-color="white"
     >
@@ -21,13 +28,6 @@
     >
       Classement : {{ teamRankingInOfficialDivision }}
     </v-chip>
-    <v-chip
-      class="ma-2"
-      color="blue"
-      text-color="white"
-    >
-      Effectif : {{ teamEffective }}
-    </v-chip>
   </div>
 </template>
 
@@ -35,6 +35,10 @@
 export default {
   name: 'TeamSpeedInfoComponent',
   props: {
+    teamName: {
+      default: '',
+      type: String
+    },
     teamPower: {
       default: 0,
       type: Number
@@ -44,10 +48,6 @@ export default {
       type: Number
     },
     teamRankingInOfficialDivision: {
-      default: 0,
-      type: Number
-    },
-    teamEffective: {
       default: 0,
       type: Number
     }
