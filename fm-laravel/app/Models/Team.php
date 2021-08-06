@@ -8,6 +8,8 @@ class Team extends Model
 {
     protected $primaryKey = 'team_id';
     protected $table = 'teams';
+
+    protected $fillable= ['team_name'];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -19,6 +21,10 @@ class Team extends Model
     ];
 
     public function user(){
-        return $this->belongsToMany(User::class,null,'tu_team','tu_user');
+        return $this->belongsToMany(User::class,null,'tu_team','tu_user')->using(TeamUser::class);
+    }
+
+    public function division(){
+        return $this->belongsToMany(Division::class,null,'du_team','du_user');
     }
 }

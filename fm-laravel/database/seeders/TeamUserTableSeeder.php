@@ -26,7 +26,6 @@ class TeamUserTableSeeder extends Seeder
                 'tu_team' => 1,
                 'tu_budget' => 80,
                 'tu_power' => 85,
-                'tu_division' => 1,
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),
             ),

@@ -21,4 +21,8 @@ class Division extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function team(){
+        return $this->belongsToMany(Team::class,null,'tu_user','tu_team');
+    }
 }

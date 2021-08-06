@@ -24,7 +24,7 @@ class UserController extends Controller
         $team = Team::find($user[0]->teams[0]['tu_team'])->get();
         $division = Division::find($user[0]->teams[0]['tu_division'])->get();
         $divisionUser = DivisionUser::where('du_user',$user[0]->teams[0]['tu_user'])->get();
-        dd($user[0]->team);
+        dd($user[0]);
         $user[0]->teams[0]['tu_name'] = $team[0]['team_name'];
         $user[0]->division = $division[0];
         return $user;

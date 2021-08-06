@@ -23,11 +23,12 @@ class TeamsTableSeeder extends Seeder
             array (
                 'team_id' => 1,
                 'team_name' => 'PSG',
-                'created_at' => new \DateTime(),
-                'updated_at' => new \DateTime(),
                 'team_power' => 80,
                 'team_budget' => 60,
                 'team_objective' => '"{}"',
+                'team_division' => 1,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
         ));
 

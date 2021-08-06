@@ -5,8 +5,9 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class TeamUser extends Model
+class TeamUser extends Pivot
 {
     protected $primaryKey = 'tu_id';
     protected $table = 'team_user';
@@ -28,4 +29,7 @@ class TeamUser extends Model
         'tu_id','tu_user', 'tu_team','tu_budget','tu_power','tu_division'
     ];
 
+    public function team(){
+        return $this->belongsTo(Team::class,'tu_team','team_id');
+    }
 }

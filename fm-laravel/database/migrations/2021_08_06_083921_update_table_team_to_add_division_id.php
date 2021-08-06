@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTeamAndTakenToDivisionUser extends Migration
+class UpdateTableTeamToAddDivisionId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class AddTeamAndTakenToDivisionUser extends Migration
      */
     public function up()
     {
-        Schema::table('division_user', function (Blueprint $table) {
-            $table->boolean('du_taken');
-            $table->bigInteger('du_team')->unsigned();
-            $table->foreign('du_team')
-                ->references('team_id')
-                ->on('teams');
+        Schema::table('teams', function (Blueprint $table) {
+            $table->bigInteger('team_division')->unsigned();
+            $table->foreign('team_division')
+                ->references('division_id')
+                ->on('divisions');
         });
     }
 
@@ -29,7 +28,7 @@ class AddTeamAndTakenToDivisionUser extends Migration
      */
     public function down()
     {
-        Schema::table('division_user', function (Blueprint $table) {
+        Schema::table('add_division_id', function (Blueprint $table) {
             //
         });
     }
