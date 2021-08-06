@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FootballMatch;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Test\Fixtures\Foo;
 
 class FootballMatchController extends Controller
 {
@@ -12,9 +13,53 @@ class FootballMatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getMatchOfMyDivision(Request $request)
     {
-        //
+        return FootballMatch::where('fm_user',$request->id)->where('fm_year',$request->fm_year)
+            ->orderBy('fm_date', 'DESC')
+            ->with('firstTeam')
+            ->with('secondTeam')
+            ->get();
+    }
+
+    public function playMatch(){
+        $teams = FootballMatch::where('fm_year',2021)
+            ->where('fm_result_fc',null)
+            ->where('fm_result_sc',null)
+            ->with('firstTeam')
+            ->with('secondTeam')
+            ->get();
+
+        foreach ($teams as $team){
+            $teamFirstResult = 0;
+            $teamSecondResult = 0;
+            if($team['fm_date'] <= (new \DateTime())->format('Y-m-d h:i:s')) {
+
+                if($team['firstTeam']->teamUser['tu_power'] > $team['secondTeam']->teamUser['tu_power']){
+                    $teamFirstResult = rand(1,4);
+                    $teamSecondResult = rand(0,2);
+                    $team->update(['fm_result_fc' => $teamFirstResult]);
+                    $team->update(['fm_result_sc' => $teamSecondResult]);
+                }else if($team['firstTeam']->teamUser['tu_power'] < $team['secondTeam']->teamUser['tu_power']) {
+                    $teamSecondResult = rand(1,4);
+                    $teamFirstResult = rand(0,2);
+                    $team->update(['fm_result_sc' => $teamSecondResult]);
+                    $team->update(['fm_result_fc' => $teamFirstResult]);
+                }else {
+                    $team->update(['fm_result_fc' => rand(0,4),'fm_result_sc' => rand(0,4)]);
+                }
+
+                if($teamSecondResult > $teamFirstResult){
+                    $team->update(['fm_winner' => 'second_club']);
+                }
+                if($teamFirstResult > $teamSecondResult) {
+                    $team->update(['fm_winner' => 'first_club']);
+                }
+                if($teamFirstResult == $teamSecondResult) {
+                    $team->update(['fm_winner' => 'equality']);
+                }
+            }
+        }
     }
 
     /**

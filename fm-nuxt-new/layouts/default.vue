@@ -11,6 +11,16 @@
 <script>
 import Navbar from '~/components/Navbar/Navbar'
 export default {
-  components: { Navbar }
+  components: { Navbar },
+  async mounted () {
+    await this.playMatch()
+  },
+  methods: {
+    async playMatch () {
+      await this.$axios.get('http://localhost/api/fm/play').then((res) => {
+        console.log(res.data)
+      })
+    }
+  }
 }
 </script>

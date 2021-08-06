@@ -27,6 +27,8 @@ class CreateFootballMatchesTable extends Migration
             $table->foreign('fm_user')
                 ->references('id')
                 ->on('users');
+            $table->integer('fm_result_fc')->nullable();
+            $table->integer('fm_result_sc')->nullable();
             $table->dateTime('fm_date');
             $table->timestamps();
         });

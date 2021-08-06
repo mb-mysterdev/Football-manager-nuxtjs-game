@@ -55,6 +55,18 @@ class TeamsTableSeeder extends Seeder
                     'created_at' => new \DateTime(),
                     'updated_at' => new \DateTime(),
                 ),
+            3 =>
+                array (
+                    'team_id' => 4,
+                    'team_name' => 'Rennes',
+                    'team_power' => 60,
+                    'team_budget' => 50,
+                    'team_objective' => '"{}"',
+                    'team_division' => 1,
+                    'team_logo' => '',
+                    'created_at' => new \DateTime(),
+                    'updated_at' => new \DateTime(),
+                ),
         ));
 
 

@@ -24,14 +24,14 @@
             Home
           </nuxt-link>
         </v-tab>
-        <!--        <v-tab>-->
-        <!--          <nuxt-link to="/team/1">-->
-        <!--            Equipe-->
-        <!--          </nuxt-link>-->
-        <!--        </v-tab>-->
         <v-tab>
           <nuxt-link to="/ranking">
             Classement
+          </nuxt-link>
+        </v-tab>
+        <v-tab>
+          <nuxt-link to="/season">
+            Saison
           </nuxt-link>
         </v-tab>
         <!--        <v-tab>Transfert</v-tab>-->

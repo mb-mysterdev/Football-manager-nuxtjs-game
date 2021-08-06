@@ -20,6 +20,10 @@ class Team extends Model
         'updated_at'
     ];
 
+    public function teamUser(){
+        return $this->hasOne(TeamUser::class,'tu_team','team_id');
+    }
+
     public function division()
     {
         return $this->hasOne(Division::class,'division_id','team_division');

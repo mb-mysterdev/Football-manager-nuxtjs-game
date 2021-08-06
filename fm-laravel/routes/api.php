@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DivisonController;
+use App\Http\Controllers\FootballMatchController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamUserController;
 use App\Http\Controllers\UserController;
@@ -41,6 +42,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // division
 $router->get('/division/{division_id}',  [DivisonController::class, 'showDefaultTeams']);
 $router->get('/division/{id}/{division_id}',  [DivisonController::class, 'showUserDivisionTeams']);
+
+// football matches
+$router->get('/fm/{id}/{fm_year}',  [FootballMatchController::class, 'getMatchOfMyDivision']);
+$router->get('/fm/play',  [FootballMatchController::class, 'playMatch']);
 
 
 // user - team
