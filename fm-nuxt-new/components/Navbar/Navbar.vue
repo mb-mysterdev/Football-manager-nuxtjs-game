@@ -6,7 +6,12 @@
       height="20px"
       class="text-sm-body-2 d-flex justify-center"
     >
-      <team-speed-info-component :team-name="teams.tu_name" :team-power="teams.tu_power" :team-budget="teams.tu_budget" :team-ranking-in-official-division="3" />
+      <team-speed-info-component
+        :team-name="teamName"
+        :team-power="team.tu_power"
+        :team-budget="team.tu_budget"
+        :team-ranking-in-official-division="3"
+      />
     </v-app-bar>
     <v-app-bar
       color="accent-4"
@@ -50,18 +55,20 @@ export default {
     user: {
       type: Object
     },
-    teams: {
+    teamName: '',
+    team: {
       type: Object
     }
   }),
   async mounted () {
     await this.getUser()
+    this.teamName = this.team.team.team_name
   },
   methods: {
     async getUser () {
       await this.$axios.get('http://localhost/api/users/1').then((res) => {
         this.user = res.data[0]
-        this.teams = this.user.teams[0]
+        this.team = this.user.team
       })
     }
   }

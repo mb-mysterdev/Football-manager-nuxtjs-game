@@ -27,7 +27,7 @@ export default {
   },
   async mounted () {
     await this.getUser()
-    this.userHasTeams = this.user[0].teams.length
+    this.userHasTeams = this.user[0].team ?? 0
   },
   methods: {
     async getUser () {
