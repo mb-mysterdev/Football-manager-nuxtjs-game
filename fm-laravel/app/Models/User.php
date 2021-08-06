@@ -57,23 +57,10 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    /**
-     * Get all teams in connection with.
-     */
-    public function teams()
-    {
-        return $this->hasMany(TeamUser::class,'tu_user','id');
-    }
-
-    /**
-     * Get all teams in connection with.
-     */
-    public function divisionUser()
-    {
-        return $this->hasMany(DivisionUser::class,'du_user','id');
-    }
-
     public function team(){
-        return $this->belongsToMany(Team::class,null,'tu_user','tu_team');
+        return $this->hasOne(TeamUser::class,'tu_user','id')->with('team');
+
+        return $this->belongsToMany(Team::class,'team_user','tu_user','tu_team')
+            ->as('team_user')->with('division');
     }
 }

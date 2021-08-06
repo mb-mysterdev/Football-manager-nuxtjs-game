@@ -20,14 +20,14 @@ class UserController extends Controller
     }
 
     public function show($id){
-        $user = User::find($id)->with('teams')->get();
-        $team = Team::find($user[0]->teams[0]['tu_team'])->get();
-        $division = Division::find($user[0]->teams[0]['tu_division'])->get();
-        $divisionUser = DivisionUser::where('du_user',$user[0]->teams[0]['tu_user'])->get();
-        dd($user[0]);
-        $user[0]->teams[0]['tu_name'] = $team[0]['team_name'];
-        $user[0]->division = $division[0];
-        return $user;
+        return User::find($id)->with('team')->get();
+//        $user = User::find($id)->with('teams')->get();
+//        $team = Team::find($user[0]->teams[0]['tu_team'])->get();
+//        $division = Division::find($user[0]->teams[0]['tu_division'])->get();
+//        $divisionUser = DivisionUser::where('du_user',$user[0]->teams[0]['tu_user'])->get();
+//        dd($user[0]);
+//        $user[0]->teams[0]['tu_name'] = $team[0]['team_name'];
+//        $user[0]->division = $division[0];
     }
 
     public function create(Request $request){

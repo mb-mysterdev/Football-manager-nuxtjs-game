@@ -22,7 +22,11 @@ class Division extends Model
         'updated_at'
     ];
 
-    public function team(){
-        return $this->belongsToMany(Team::class,null,'tu_user','tu_team');
+    /**
+     * Get the teams.
+     */
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
     }
 }

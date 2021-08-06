@@ -20,11 +20,8 @@ class Team extends Model
         'updated_at'
     ];
 
-    public function user(){
-        return $this->belongsToMany(User::class,null,'tu_team','tu_user')->using(TeamUser::class);
-    }
-
-    public function division(){
-        return $this->belongsToMany(Division::class,null,'du_team','du_user');
+    public function division()
+    {
+        return $this->hasOne(Division::class,'division_id','team_division');
     }
 }

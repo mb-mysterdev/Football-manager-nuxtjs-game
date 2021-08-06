@@ -30,6 +30,6 @@ class TeamUser extends Pivot
     ];
 
     public function team(){
-        return $this->belongsTo(Team::class,'tu_team','team_id');
+        return $this->hasOne(Team::class,'team_id','tu_team')->with('division');
     }
 }
