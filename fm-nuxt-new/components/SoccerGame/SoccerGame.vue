@@ -11,7 +11,7 @@
     <v-row class="d-flex justify-center">
       <v-col>
         <v-card-subtitle class="d-flex justify-center">
-          PSG
+          {{ firstTeamName }}
         </v-card-subtitle>
       </v-col>
       <v-col>
@@ -21,20 +21,37 @@
       </v-col>
       <v-col>
         <v-card-subtitle class="d-flex justify-center">
-          PSG
+          {{ secondTeamName }}
         </v-card-subtitle>
       </v-col>
     </v-row>
 
     <v-card-text class="text--primary d-flex justify-end">
-      <div>01/08/2021 14:00:00</div>
+      <div>{{ nextMatch.fm_date }}</div>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
 export default {
-  name: 'SoccerGame'
+  name: 'SoccerGame',
+  props: {
+    nextMatch: {
+      type: [Object]
+    }
+  },
+  data () {
+    return {
+      firstTeamName: '',
+      secondTeamName: ''
+    }
+  },
+  updated () {
+    if (this.nextMatch.first_team !== undefined && this.nextMatch.second_team !== undefined) {
+      this.firstTeamName = this.nextMatch.first_team.team_name
+      this.secondTeamName = this.nextMatch.second_team.team_name
+    }
+  }
 }
 </script>
 

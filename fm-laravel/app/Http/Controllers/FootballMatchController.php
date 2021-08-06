@@ -22,6 +22,21 @@ class FootballMatchController extends Controller
             ->get();
     }
 
+    public function nextMatch(Request $request){
+      return FootballMatch::where('fm_user',$request->id)
+          ->whereNull('fm_winner')
+          ->where('fm_year',$request->fm_year)
+          ->where(function ($query) use($request) {
+              $query->where('fm_first_club',$request->team_id);
+              $query->orWhere('fm_second_club',$request->team_id);
+          })
+            ->orderBy('fm_date', 'DESC')
+            ->with('firstTeam')
+            ->with('secondTeam')
+            ->get()
+          ->first();
+    }
+
     public function playMatch(){
         $teams = FootballMatch::where('fm_year',2021)
             ->where('fm_result_fc',null)

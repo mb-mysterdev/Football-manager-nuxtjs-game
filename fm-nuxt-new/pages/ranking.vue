@@ -1,5 +1,7 @@
 <template>
-  <ranking-component :division="division" />
+  <v-container>
+    <ranking-component :division="division" />
+  </v-container>
 </template>
 
 <script>
