@@ -34,7 +34,11 @@
             Saison
           </nuxt-link>
         </v-tab>
-        <!--        <v-tab>Transfert</v-tab>-->
+        <v-tab>
+          <nuxt-link to="/calendar">
+            Calendrier
+          </nuxt-link>
+        </v-tab>
       </v-tabs>
     </v-app-bar>
   </div>
