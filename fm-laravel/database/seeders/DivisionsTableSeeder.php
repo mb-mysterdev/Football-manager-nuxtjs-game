@@ -26,6 +26,13 @@ class DivisionsTableSeeder extends Seeder
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),
             ),
+            1 =>
+                array (
+                    'division_id' => 2,
+                    'division_name' => 'Ligue2',
+                    'created_at' => new \DateTime(),
+                    'updated_at' => new \DateTime(),
+                ),
         ));
 
 

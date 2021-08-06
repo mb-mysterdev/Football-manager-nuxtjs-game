@@ -44,9 +44,20 @@ class DivisonController extends Controller
      * @param  \App\Models\Division  $divison
      * @return \Illuminate\Http\Response
      */
-    public function show(Division $divison, $userId)
+    public function showDefaultTeams(Request $request)
     {
+        return Division::where('division_id','=',$request->division_id)->with('defaultTeams')->get();
+    }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Division  $divison
+     * @return \Illuminate\Http\Response
+     */
+    public function showUserDivisionTeams(Request $request)
+    {
+        return Division::where('division_id','=',$request->division_id)->with('teams')->get();
     }
 
     /**

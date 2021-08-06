@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\DivisonController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamUserController;
 use App\Http\Controllers\UserController;
@@ -36,6 +37,11 @@ Route::group([
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// division
+$router->get('/division/{division_id}',  [DivisonController::class, 'showDefaultTeams']);
+$router->get('/division/{id}/{division_id}',  [DivisonController::class, 'showUserDivisionTeams']);
+
 
 // user - team
 $router->post('/team-user',  [TeamUserController::class, 'create']);
