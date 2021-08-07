@@ -55,25 +55,25 @@ class PlayMatchService
 
     private function getRandomButs(int $teamPower){
         switch ($teamPower) {
-            case $teamPower > 98:
+            case $teamPower >= 98:
                 $randomButs = rand(0,8);
                 break;
-            case $teamPower > 96:
+            case $teamPower >= 96:
                 $randomButs = rand(0,7);
                 break;
-            case $teamPower > 92:
+            case $teamPower >= 92:
                 $randomButs = rand(0,6);
                 break;
-            case $teamPower > 88:
+            case $teamPower >= 88:
                 $randomButs = rand(0,5);
                 break;
-            case $teamPower > 80:
+            case $teamPower >= 80:
                 $randomButs = rand(0,4);
                 break;
-            case $teamPower > 65:
+            case $teamPower >= 65:
                 $randomButs = rand(0,3);
                 break;
-            case $teamPower > 48:
+            case $teamPower >= 40:
                 $randomButs = rand(0,2);
                 break;
             default:
