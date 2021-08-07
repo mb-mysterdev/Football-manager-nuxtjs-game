@@ -14,23 +14,23 @@ use Nette\Utils\DateTime;
 class TeamUserController extends Controller
 {
     public function create(Request $request){
-        // List division et chaque division seul
-//        TeamUser::create($request->all());
-        // delete old tu_active if exist
-        // add all teams to team_user
+//         List division et chaque division seul
+        TeamUser::create($request->all());
+//         delete old tu_active if exist
+//         add all teams to team_user
         $defaultTeams = Team::where('team_id','!=',$request->tu_team)
             ->where('team_division',1)->get();
-//        foreach ($defaultTeams as $team){
-//            TeamUser::create([
-//                'tu_team' => $team->team_id,
-//                'tu_user' => $request->tu_user,
-//                'tu_budget' => $team->team_budget,
-//                'tu_power' => $team->team_power,
-//                'tu_division' => $team->team_division,
-//                'tu_taken' => 0,
-//                'tu_active' => 0
-//            ]);
-//        }
+        foreach ($defaultTeams as $team){
+            TeamUser::create([
+                'tu_team' => $team->team_id,
+                'tu_user' => $request->tu_user,
+                'tu_budget' => $team->team_budget,
+                'tu_power' => $team->team_power,
+                'tu_division' => $team->team_division,
+                'tu_taken' => 0,
+                'tu_active' => 0
+            ]);
+        }
         $user = User::where('id',$request->tu_user)->get();
 
         $teams = TeamUser::where('tu_user',$request->tu_user)
