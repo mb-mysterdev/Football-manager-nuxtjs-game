@@ -18,8 +18,8 @@ class AddTakenFieldToTeamUser extends Migration
             $table->foreign('tu_division')
                 ->references('division_id')
                 ->on('divisions');
-            $table->boolean('tu_taken');
-            $table->boolean('tu_active');
+            $table->boolean('tu_taken')->default(0);
+            $table->boolean('tu_active')->default(0);
         });
     }
 

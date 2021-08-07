@@ -33,7 +33,7 @@ export default {
   },
   async created () {
     await this.getUser()
-    this.userHasTeams = this.user[0].team ?? 0
+    this.userHasTeams = this.user[0].team && this.user[0].team.tu_taken === 1 && this.user[0].team.tu_active === 1 ? 1 : 0
     await this.getNextMatch()
   },
   methods: {

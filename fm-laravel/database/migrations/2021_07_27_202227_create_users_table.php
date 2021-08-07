@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('password');
+            $table->year('year_in_progress')->default(Date('Y'));
+            $table->year('start_year')->default(Date('Y'));
             $table->timestamps();
         });
     }

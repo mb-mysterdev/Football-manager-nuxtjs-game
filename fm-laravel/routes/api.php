@@ -45,7 +45,7 @@ $router->get('/division/{id}/{division_id}',  [DivisonController::class, 'showUs
 
 // football matches
 $router->get('/fm/{id}/{fm_year}',  [FootballMatchController::class, 'getMatchOfMyDivision']);
-$router->get('/fm/play',  [FootballMatchController::class, 'playMatch']);
+$router->get('/fm/play-match',  [FootballMatchController::class, 'playMatch']);
 $router->get('/fm/{id}/{team_id}/{fm_year}/next-match',  [FootballMatchController::class, 'nextMatch']);
 
 

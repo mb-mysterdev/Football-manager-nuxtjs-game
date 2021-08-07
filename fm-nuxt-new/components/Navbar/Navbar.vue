@@ -61,18 +61,26 @@ export default {
     },
     teamName: '',
     team: {
+      default () {
+        return { tu_power: 0, tu_budget: 0, tu_name: '' }
+      },
       type: Object
     }
   }),
   async mounted () {
     await this.getUser()
-    this.teamName = this.team.team.team_name
+    this.teamName = ''
+    if (this.user.team !== null) {
+      this.teamName = this.team.team.team_name
+    }
   },
   methods: {
     async getUser () {
       await this.$axios.get('http://localhost/api/users/1').then((res) => {
         this.user = res.data[0]
-        this.team = this.user.team
+        if (this.user.team !== null) {
+          this.team = this.user.team
+        }
       })
     }
   }
