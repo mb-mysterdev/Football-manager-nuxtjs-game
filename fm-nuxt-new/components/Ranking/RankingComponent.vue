@@ -68,8 +68,8 @@
           </v-list-item>
 
           <v-list-item
-            v-for="(item, i) in division.teams"
-            :key="i"
+            v-for="item in division.teams"
+            :key="item.tu_id"
           >
             <!-- Team -->
             <v-list-item-content>

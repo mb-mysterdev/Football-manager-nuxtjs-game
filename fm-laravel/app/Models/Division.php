@@ -37,7 +37,7 @@ class Division extends Model
     public function teams()
     {
         return $this->hasMany(TeamUser::class,'tu_division','division_id')
-            ->orderBy('tu_ranking', 'asc')
+//            ->orderBy('tu_ranking', 'asc')
         ->orderBy('tu_pts', 'desc')
             ->orderBy('tu_db', 'desc')
             ->with('team');

@@ -26,7 +26,8 @@ class TeamUser extends Pivot
      * @var array
      **/
     protected $fillable = [
-        'tu_id','tu_user', 'tu_team','tu_budget','tu_power','tu_division','tu_taken','tu_active','tu_pts'
+        'tu_id','tu_user', 'tu_team','tu_budget','tu_power','tu_division','tu_taken','tu_active','tu_pts',
+        'tu_j','tu_g','tu_n','tu_p','tu_bp','tu_bc','tu_db','tu_ranking','tu_year'
     ];
 
     public function team(){

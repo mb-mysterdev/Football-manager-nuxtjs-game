@@ -14,12 +14,12 @@ class TeamUserTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('team_user')->delete();
-        
+
         \DB::table('team_user')->insert(array (
-            0 => 
+            0 =>
             array (
                 'tu_id' => 1,
                 'tu_user' => 1,
@@ -31,18 +31,18 @@ class TeamUserTableSeeder extends Seeder
                 'tu_division' => 1,
                 'tu_taken' => 1,
                 'tu_active' => 1,
-                'tu_pts' => 4,
-                'tu_j' => 2,
-                'tu_g' => 1,
-                'tu_n' => 1,
+                'tu_pts' => 0,
+                'tu_j' => 0,
+                'tu_g' => 0,
+                'tu_n' => 0,
                 'tu_p' => 0,
-                'tu_bp' => 3,
-                'tu_bc' => 1,
-                'tu_db' => 2,
+                'tu_bp' => 0,
+                'tu_bc' => 0,
+                'tu_db' => 0,
                 'tu_ranking' => 1,
                 'tu_year' => 2021,
             ),
-            1 => 
+            1 =>
             array (
                 'tu_id' => 2,
                 'tu_user' => 1,
@@ -54,18 +54,18 @@ class TeamUserTableSeeder extends Seeder
                 'tu_division' => 1,
                 'tu_taken' => 0,
                 'tu_active' => 0,
-                'tu_pts' => 4,
-                'tu_j' => 2,
-                'tu_g' => 1,
-                'tu_n' => 1,
+                'tu_pts' => 0,
+                'tu_j' => 0,
+                'tu_g' => 0,
+                'tu_n' => 0,
                 'tu_p' => 0,
-                'tu_bp' => 2,
-                'tu_bc' => 1,
-                'tu_db' => 1,
+                'tu_bp' => 0,
+                'tu_bc' => 0,
+                'tu_db' => 0,
                 'tu_ranking' => 2,
                 'tu_year' => 2021,
             ),
-            2 => 
+            2 =>
             array (
                 'tu_id' => 3,
                 'tu_user' => 1,
@@ -77,18 +77,18 @@ class TeamUserTableSeeder extends Seeder
                 'tu_division' => 2,
                 'tu_taken' => 1,
                 'tu_active' => 0,
-                'tu_pts' => 10,
-                'tu_j' => NULL,
-                'tu_g' => NULL,
-                'tu_n' => NULL,
-                'tu_p' => NULL,
-                'tu_bp' => NULL,
-                'tu_bc' => NULL,
-                'tu_db' => 8,
+                'tu_pts' => 0,
+                'tu_j' => 0,
+                'tu_g' => 0,
+                'tu_n' => 0,
+                'tu_p' => 0,
+                'tu_bp' => 0,
+                'tu_bc' => 0,
+                'tu_db' => 0,
                 'tu_ranking' => 10,
                 'tu_year' => 2020,
             ),
-            3 => 
+            3 =>
             array (
                 'tu_id' => 4,
                 'tu_user' => 1,
@@ -100,19 +100,19 @@ class TeamUserTableSeeder extends Seeder
                 'tu_division' => 1,
                 'tu_taken' => 0,
                 'tu_active' => 1,
-                'tu_pts' => 2,
-                'tu_j' => 2,
+                'tu_pts' => 0,
+                'tu_j' => 0,
                 'tu_g' => 0,
-                'tu_n' => 2,
+                'tu_n' => 0,
                 'tu_p' => 0,
-                'tu_bp' => 4,
-                'tu_bc' => 4,
+                'tu_bp' => 0,
+                'tu_bc' => 0,
                 'tu_db' => 0,
                 'tu_ranking' => 3,
                 'tu_year' => 2021,
             ),
         ));
-        
-        
+
+
     }
 }

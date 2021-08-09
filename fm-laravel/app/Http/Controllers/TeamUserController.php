@@ -15,22 +15,22 @@ class TeamUserController extends Controller
 {
     public function create(Request $request){
 //         List division et chaque division seul
-        TeamUser::create($request->all());
+//        TeamUser::create($request->all());
 //         delete old tu_active if exist
 //         add all teams to team_user
-        $defaultTeams = Team::where('team_id','!=',$request->tu_team)
-            ->where('team_division',1)->get();
-        foreach ($defaultTeams as $team){
-            TeamUser::create([
-                'tu_team' => $team->team_id,
-                'tu_user' => $request->tu_user,
-                'tu_budget' => $team->team_budget,
-                'tu_power' => $team->team_power,
-                'tu_division' => $team->team_division,
-                'tu_taken' => 0,
-                'tu_active' => 0
-            ]);
-        }
+//        $defaultTeams = Team::where('team_id','!=',$request->tu_team)
+//            ->where('team_division',1)->get();
+//        foreach ($defaultTeams as $team){
+//            TeamUser::create([
+//                'tu_team' => $team->team_id,
+//                'tu_user' => $request->tu_user,
+//                'tu_budget' => $team->team_budget,
+//                'tu_power' => $team->team_power,
+//                'tu_division' => $team->team_division,
+//                'tu_taken' => 0,
+//                'tu_active' => 0
+//            ]);
+//        }
         $user = User::where('id',$request->tu_user)->get();
 
         $teams = TeamUser::where('tu_user',$request->tu_user)
@@ -51,23 +51,21 @@ class TeamUserController extends Controller
                     $i = 2;
                     foreach ($item[0] as $teamToCreate){
                         if($teamToCreate['tu_team'] != $firstTeamId){
-                            FootballMatch::create(
-                                ['fm_first_club'=>$firstTeamId,
+                            $match = FootballMatch::create(
+                                    ['fm_first_club'=>$firstTeamId,
                                     'fm_second_club'=> $teamToCreate['tu_team'],
                                     'fm_user' => $teamToCreate['tu_user'],
-                                    'fm_date' => (new Carbon())->addHours($i)
+                                    'fm_date' => (new Carbon())->subHours($i)
                                         ->format('Y-m-d H:i:s'),
-                                    'fm_year'=>$teamToCreate['tu_year']]
+                                    'fm_year'=>$teamToCreate['tu_year']
+                                    ]
                             );
                         }
                         $i++;
                     }
                 }
             }
-
             $i++;
         }
-
-
     }
 }
