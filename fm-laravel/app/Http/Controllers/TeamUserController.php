@@ -15,24 +15,35 @@ class TeamUserController extends Controller
 {
     public function create(Request $request){
 //         List division et chaque division seul
-//        TeamUser::create($request->all());
-//         delete old tu_active if exist
+        TeamUser::create($request->all());
+//         delete old tu_active if exist a faire
 //         add all teams to team_user
-//        $defaultTeams = Team::where('team_id','!=',$request->tu_team)
-//            ->where('team_division',1)->get();
-//        foreach ($defaultTeams as $team){
-//            TeamUser::create([
-//                'tu_team' => $team->team_id,
-//                'tu_user' => $request->tu_user,
-//                'tu_budget' => $team->team_budget,
-//                'tu_power' => $team->team_power,
-//                'tu_division' => $team->team_division,
-//                'tu_taken' => 0,
-//                'tu_active' => 0
-//            ]);
-//        }
+        $this->createAllTeamsOfMyDivision($request);
         $user = User::where('id',$request->tu_user)->get();
 
+        // selected all teams of my division and prepared a good array
+        $listAllMatch = $this->createArrayToListAllMAtch($request,$user);
+
+        $this->createAllFootballMatch($listAllMatch);
+    }
+
+    public function createAllTeamsOfMyDivision(Request $request){
+        $defaultTeams = Team::where('team_id','!=',$request->tu_team)
+            ->where('team_division',1)->get();
+        foreach ($defaultTeams as $team){
+            TeamUser::create([
+                'tu_team' => $team->team_id,
+                'tu_user' => $request->tu_user,
+                'tu_budget' => $team->team_budget,
+                'tu_power' => $team->team_power,
+                'tu_division' => $team->team_division,
+                'tu_taken' => 0,
+                'tu_active' => 0
+            ]);
+        }
+    }
+
+    public function createArrayToListAllMAtch(Request $request,User $user){
         $teams = TeamUser::where('tu_user',$request->tu_user)
             ->where('tu_division',1)
             ->where('tu_year',$user->first()->year_in_progress)
@@ -42,9 +53,12 @@ class TeamUserController extends Controller
         foreach ($teams as $team) {
             $listMatchByTeam[$team->team->team_name] = [$teams];
         }
+        return $listMatchByTeam;
+    }
 
+    public function createAllFootballMatch($listAllMAtch): void{
         $i = 0;
-        foreach ($listMatchByTeam as $key => $item){
+        foreach ($listAllMAtch as $key => $item){
             foreach ($item[0] as $team){
                 if($team['team']['team_name'] == $key) {
                     $firstTeamId = $team['team']['team_id'];
@@ -52,13 +66,13 @@ class TeamUserController extends Controller
                     foreach ($item[0] as $teamToCreate){
                         if($teamToCreate['tu_team'] != $firstTeamId){
                             $match = FootballMatch::create(
-                                    ['fm_first_club'=>$firstTeamId,
+                                ['fm_first_club'=>$firstTeamId,
                                     'fm_second_club'=> $teamToCreate['tu_team'],
                                     'fm_user' => $teamToCreate['tu_user'],
                                     'fm_date' => (new Carbon())->subHours($i)
                                         ->format('Y-m-d H:i:s'),
                                     'fm_year'=>$teamToCreate['tu_year']
-                                    ]
+                                ]
                             );
                         }
                         $i++;
