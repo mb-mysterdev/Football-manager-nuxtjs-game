@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     async getMatches () {
-      await this.$axios.get('http://localhost/api/fm/1/2021').then((res) => {
+      await this.$axios.get('http://localhost/api/fm/1/2021/1').then((res) => {
         this.matches = res.data
       })
     }

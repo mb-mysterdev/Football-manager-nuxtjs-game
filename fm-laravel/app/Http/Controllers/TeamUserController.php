@@ -7,6 +7,7 @@ use App\Models\FootballMatch;
 use App\Models\Team;
 use App\Models\TeamUser;
 use App\Models\User;
+use App\Models\UserDivision;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class TeamUserController extends Controller
     public function create(Request $request){
 //         List division et chaque division seul
         TeamUser::create($request->all());
+        UserDivision::create(['ud_user'=>$request->tu_user,'ud_team'=>$request->tu_team,'ud_active'=>1]);
 //         delete old tu_active if exist a faire
 //         add all teams to team_user
         $this->createAllTeamsOfMyDivision($request);

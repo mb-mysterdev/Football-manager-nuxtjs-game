@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DivisonController;
 use App\Http\Controllers\FootballMatchController;
+use App\Http\Controllers\PlayMatchController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamUserController;
 use App\Http\Controllers\UserController;
@@ -44,9 +45,10 @@ $router->get('/division/{division_id}',  [DivisonController::class, 'showDefault
 $router->get('/division/{id}/{division_id}',  [DivisonController::class, 'showUserDivisionTeams']);
 
 // football matches
-$router->get('/fm/{id}/{fm_year}',  [FootballMatchController::class, 'getMatchOfMyDivision']);
-$router->get('/fm/play-match',  [FootballMatchController::class, 'playMatch']);
+$router->get('/fm/{id}/{fm_year}/{fm_division}',  [FootballMatchController::class, 'getMatchOfMyDivision']);
 $router->get('/fm/{id}/{team_id}/{fm_year}/next-match',  [FootballMatchController::class, 'nextMatch']);
+    # Play Match
+    $router->get('/fm/play-match',  [PlayMatchController::class, 'playMatch']);
 
 
 // user - team
