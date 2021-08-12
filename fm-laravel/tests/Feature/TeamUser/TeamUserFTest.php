@@ -21,7 +21,6 @@ class TeamUserFTest extends TestCase
         $user = User::factory()->create();
 
         $this->postJson("/api/team-user", ['tu_team'=>$team->team_id,'tu_user'=>$user->id,'tu_division'=>$division->division_id])
-            ->dump()
         ->assertStatus(200);
         $this->assertDatabaseHas('team_user',['tu_team'=>$team->team_id,'tu_user'=>$user->id,'tu_division'=>$division->division_id]);
     }

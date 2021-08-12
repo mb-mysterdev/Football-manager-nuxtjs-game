@@ -3,7 +3,6 @@
 namespace App\Services\MatchServices;
 
 use App\Models\FootballMatch;
-use App\Models\Team;
 use App\Models\TeamUser;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
