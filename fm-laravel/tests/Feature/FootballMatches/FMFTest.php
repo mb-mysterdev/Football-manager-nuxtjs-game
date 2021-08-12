@@ -33,8 +33,12 @@ class FMFTest extends TestCase
         $team2Ligue2 = Team::factory()->create(['team_division'=>$division2->division_id,'team_name'=>'PSG']);
 
         FootballMatch::factory()->createMany([
-            ['fm_first_club'=>$myTeam->team_id,'fm_second_club'=>$teamLigue1->team_id,'fm_user'=>$user->id,'fm_date'=> new DateTime()],
-            ['fm_first_club'=>$teamLigue2->team_id,'fm_second_club'=>$team2Ligue2->team_id,'fm_user'=>$user->id,'fm_date'=> new DateTime()],
+            ['fm_first_club'=>$myTeam->team_id,'fm_second_club'=>$teamLigue1->team_id,
+                'fm_user'=>$user->id,'fm_date'=> new DateTime(),
+                'fm_division'=>$division->division_id],
+            ['fm_first_club'=>$teamLigue2->team_id,'fm_second_club'=>$team2Ligue2->team_id,
+                'fm_user'=>$user->id,'fm_date'=> new DateTime(),
+                'fm_division'=>$division2->division_id],
         ]);
 
         $this->getJson("/api/fm/$user->id/".Date('Y')."/$division->division_id")
@@ -42,5 +46,36 @@ class FMFTest extends TestCase
         ->assertJsonCount(1)
         ->assertJsonFragment(['team_name'=>'Liverpool'])
         ->assertJsonMissing(['team_name'=>'PSG']);
+    }
+
+    public function testGetNextMatch(){
+        $user = User::factory()->create([
+            'name' => 'Toto','email'=> 'toto@gmail.com',
+            'password'=> 'test',
+            "year_in_progress"=> 2021,
+            "start_year"=> 2021,
+        ]);
+
+        $division = Division::factory()->create(['division_name'=>'Ligue1']);
+        $division2 = Division::factory()->create(['division_name'=>'Ligue2']);
+
+        $myTeam = Team::factory()->create(['team_division'=>$division->division_id,'team_name'=>'Liverpool']);
+        $teamLigue1 = Team::factory()->create(['team_division'=>$division2->division_id,'team_name'=>'ESS']);
+
+        FootballMatch::factory()->createMany([
+            ['fm_first_club'=>$myTeam->team_id,'fm_second_club'=> $myTeam->team_id,
+                'fm_user'=>$user->id,'fm_date'=> new DateTime('2031-10-10 00:00:00'),
+                'fm_division'=>$division->division_id],
+            ['fm_first_club'=>$myTeam->team_id,'fm_second_club'=> $teamLigue1->team_id,
+                'fm_user'=>$user->id,'fm_date'=> new DateTime(),
+                'fm_division'=>$division->division_id],
+            ['fm_first_club'=> $teamLigue1->team_id,'fm_second_club'=> $teamLigue1->team_id,
+                'fm_user'=> $user->id,'fm_date'=> new DateTime(),
+                'fm_division'=> $division2->division_id],
+        ]);
+
+        $this->getJson("/api/fm/$user->id/$myTeam->team_id/".Date('Y')."/next-match")
+            ->assertStatus(200)
+        ->assertJsonFragment(['team_name' => 'ESS']);
     }
 }

@@ -34,7 +34,8 @@ class FootballMatchController extends Controller
                 $query->where('fm_first_club', $request->team_id);
                 $query->orWhere('fm_second_club', $request->team_id);
             })
-            ->orderBy('fm_date', 'DESC')
+            ->where('fm_date','>=',new \DateTime())
+            ->orderBy('fm_date', 'ASC')
             ->with('firstTeam')
             ->with('secondTeam')
             ->get()
