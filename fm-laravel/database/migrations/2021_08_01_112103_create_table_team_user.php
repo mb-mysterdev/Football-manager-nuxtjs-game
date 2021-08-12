@@ -23,8 +23,8 @@ class CreateTableTeamUser extends Migration
             $table->foreign('tu_team')
                 ->references('team_id')
                 ->on('teams');
-            $table->bigInteger('tu_budget');
-            $table->bigInteger('tu_power');
+            $table->bigInteger('tu_budget')->default(0);
+            $table->bigInteger('tu_power')->default(0);
             $table->timestamps();
         });
     }

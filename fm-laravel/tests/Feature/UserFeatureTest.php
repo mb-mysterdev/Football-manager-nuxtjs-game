@@ -18,15 +18,24 @@ class UserFeatureTest extends TestCase
      */
     public function testGetUserById()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'name' => 'Toto','email'=> 'toto@gmail.com',
+            'password'=> 'test',
+            "year_in_progress"=> 2021,
+            "start_year"=> 2021,
+        ]);
         $this->getJson("/api/users/$user->id")
             ->assertStatus(200)
-        ->assertJson($user->toArray());
+        ->assertJsonFragment($user->toArray());
     }
 
     public function testCreateUser(){
-        $this->postJson("/api/users", ['name' => 'Toto','email'=> 'toto@gmail.com',
-            'password'=> 'test'])
+        $this->postJson("/api/users",
+            ['name' => 'Toto','email'=> 'toto@gmail.com',
+            'password'=> 'test',
+            "year_in_progress"=> 2021,
+        "start_year"=> 2021,
+        "team"=> null])
         ->assertStatus(201);
         $this->assertDatabaseHas('users',['name'=>'Toto']);
     }

@@ -8,6 +8,7 @@ use App\Models\Team;
 use App\Models\TeamUser;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Nette\Utils\DateTime;
 
@@ -43,7 +44,7 @@ class TeamUserController extends Controller
         }
     }
 
-    public function createArrayToListAllMAtch(Request $request,User $user){
+    public function createArrayToListAllMAtch(Request $request,Collection $user){
         $teams = TeamUser::where('tu_user',$request->tu_user)
             ->where('tu_division',1)
             ->where('tu_year',$user->first()->year_in_progress)

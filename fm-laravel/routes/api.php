@@ -56,4 +56,5 @@ $router->post('/team-user',  [TeamUserController::class, 'create']);
 $router->get('/users/{id}',  [UserController::class, 'show']);
 $router->post('/users',  [UserController::class, 'create']);
 
+// teams
 $router->get('/teams',  [TeamController::class, 'getAll']);
