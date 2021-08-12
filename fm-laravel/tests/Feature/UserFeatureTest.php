@@ -21,8 +21,8 @@ class UserFeatureTest extends TestCase
         $user = User::factory()->create([
             'name' => 'Toto','email'=> 'toto@gmail.com',
             'password'=> 'test',
-            "year_in_progress"=> 2021,
-            "start_year"=> 2021,
+            "year_in_progress"=> Date('Y'),
+            "start_year"=> Date('Y'),
         ]);
         $this->getJson("/api/users/$user->id")
             ->assertStatus(200)
@@ -33,8 +33,8 @@ class UserFeatureTest extends TestCase
         $this->postJson("/api/users",
             ['name' => 'Toto','email'=> 'toto@gmail.com',
             'password'=> 'test',
-            "year_in_progress"=> 2021,
-        "start_year"=> 2021,
+            "year_in_progress"=> Date('Y'),
+        "start_year"=> Date('Y'),
         "team"=> null])
         ->assertStatus(201);
         $this->assertDatabaseHas('users',['name'=>'Toto']);
