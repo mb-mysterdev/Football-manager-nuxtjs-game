@@ -21,7 +21,7 @@ class TeamUserController extends Controller
         UserDivision::create(['ud_user'=>$request->tu_user,'ud_division'=>$request->tu_division,'ud_active'=>1]);
 //         delete old tu_active if exist a faire
 //         add all teams to team_user
-        $this->createAllTeamsOfMyDivision($request);
+        $this->addAllTeamsToTeamUser($request);
         $user = User::where('id',$request->tu_user)->get();
 
         // selected all teams of my division and prepared a good array
@@ -30,9 +30,10 @@ class TeamUserController extends Controller
         $this->createAllFootballMatch($listAllMatch);
     }
 
-    public function createAllTeamsOfMyDivision(Request $request){
+    public function addAllTeamsToTeamUser(Request $request){
         $defaultTeams = Team::where('team_id','!=',$request->tu_team)
-            ->where('team_division',1)->get();
+//            ->where('team_division',1)
+            ->get();
         foreach ($defaultTeams as $team){
             TeamUser::create([
                 'tu_team' => $team->team_id,
@@ -48,7 +49,7 @@ class TeamUserController extends Controller
 
     public function createArrayToListAllMAtch(Request $request,Collection $user){
         $teams = TeamUser::where('tu_user',$request->tu_user)
-            ->where('tu_division',1)
+//            ->where('tu_division',1)
             ->where('tu_year',$user->first()->year_in_progress)
             ->with('team')
             ->get();
@@ -68,13 +69,14 @@ class TeamUserController extends Controller
                     $i = 2;
                     foreach ($item[0] as $teamToCreate){
                         if($teamToCreate['tu_team'] != $firstTeamId){
-                            $match = FootballMatch::create(
+                            FootballMatch::create(
                                 ['fm_first_club'=>$firstTeamId,
                                     'fm_second_club'=> $teamToCreate['tu_team'],
                                     'fm_user' => $teamToCreate['tu_user'],
                                     'fm_date' => (new Carbon())->subHours($i)
                                         ->format('Y-m-d H:i:s'),
-                                    'fm_year'=>$teamToCreate['tu_year']
+                                    'fm_year'=>$teamToCreate['tu_year'],
+                                    'fm_division' => $teamToCreate['tu_division']
                                 ]
                             );
                         }
