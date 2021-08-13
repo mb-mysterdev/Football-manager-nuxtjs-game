@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DivisonController;
 use App\Http\Controllers\FootballMatchController;
 use App\Http\Controllers\PlayMatchController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamUserController;
 use App\Http\Controllers\UserController;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /** @var \Laravel\Lumen\Routing\Router $router */
@@ -39,6 +41,12 @@ Route::group([
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Countries
+$router->get('/countries',  function (){
+    return Country::all();
+});
+$router->get('/countries/{country_name}', [CountryController::class, 'getCountryWithDivisions']);
 
 // division
 $router->get('/division/{division_id}',  [DivisonController::class, 'showDefaultTeams']);

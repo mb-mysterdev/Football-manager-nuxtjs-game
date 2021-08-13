@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div v-if="!userHasTeams && nextMatch">
+    <div v-if="!userHasTeams">
       <div>Pas de match prochainement</div>
       <home-choice-team />
     </div>
-    <div v-if="userHasTeams && nextMatch">
+    <div v-if="userHasTeams && nextMatch !== null">
       <div class="d-flex justify-center">
         Prochain Match
       </div>
@@ -33,7 +33,11 @@ export default {
   },
   async created () {
     await this.getUser()
-    this.userHasTeams = this.user[0].team && this.user[0].team.tu_taken === 1 && this.user[0].team.tu_active === 1 ? 1 : 0
+    this.userHasTeams = this.user[0].team && this.user[0].team.tu_taken === 1 &&
+       this.user[0].team.tu_year === 2021 &&
+    this.user[0].team.tu_active === 1
+      ? 1
+      : 0
     await this.getNextMatch()
   },
   methods: {

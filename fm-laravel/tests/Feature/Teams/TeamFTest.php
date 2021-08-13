@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Country;
 use App\Models\Division;
 use App\Models\Team;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,9 +16,11 @@ class TeamFTest extends TestCase
     }
 
     public function testGetAllTeams(){
-        $division = Division::factory()->create();
+        $country = Country::factory()->create(['country_name' => 'France','country_id' => 1]);
 
-        Team::factory(3)->create(['team_division'=>$division->division_id]);
+        $division = Division::factory()->create(['division_name'=>'Ligue1','division_country' => $country->country_id]);
+
+        Team::factory(3)->create(['team_division'=>$division->division_id,'team_country'=> $country->country_id]);
 
         $this->getJson("/api/teams")
             ->assertStatus(200)

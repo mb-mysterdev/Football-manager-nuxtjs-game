@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class DivisionsTableSeeder extends Seeder
+class CountriesTableSeeder extends Seeder
 {
 
     /**
@@ -14,24 +14,20 @@ class DivisionsTableSeeder extends Seeder
      */
     public function run()
     {
+        \DB::table('countries')->delete();
 
-
-        \DB::table('divisions')->delete();
-
-        \DB::table('divisions')->insert(array (
+        \DB::table('countries')->insert(array (
             0 =>
             array (
-                'division_id' => 1,
-                'division_name' => 'Ligue1',
-                'division_country' => 1,
+                'country_id' => 1,
+                'country_name' => 'France',
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),
             ),
             1 =>
                 array (
-                    'division_id' => 2,
-                    'division_name' => 'Ligue2',
-                    'division_country' => 1,
+                    'country_id' => 2,
+                    'country_name' => 'Tunisie',
                     'created_at' => new \DateTime(),
                     'updated_at' => new \DateTime(),
                 ),

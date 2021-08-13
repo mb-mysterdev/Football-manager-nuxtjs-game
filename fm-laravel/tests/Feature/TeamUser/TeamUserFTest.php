@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Country;
 use App\Models\Division;
 use App\Models\Team;
 use App\Models\User;
@@ -16,13 +17,15 @@ class TeamUserFTest extends TestCase
     }
 
     public function testGetAllTeams(){
-        $division = Division::factory()->create();
-        $division2 = Division::factory()->create();
-        $division3 = Division::factory()->create();
+        $country = Country::factory()->create(['country_name' => 'France','country_id' => 1]);
 
-        $team = Team::factory()->create(['team_division'=>$division->division_id,'team_budget'=>50,'team_power'=>80]);
-        Team::factory()->create(['team_division'=>$division2->division_id,'team_budget'=>50,'team_power'=>80]);
-        Team::factory()->create(['team_division'=>$division3->division_id,'team_budget'=>50,'team_power'=>80]);
+        $division = Division::factory()->create(['division_name'=>'Ligue1','division_country' => $country->country_id]);
+        $division2 = Division::factory()->create(['division_name'=>'Ligue2','division_country' => $country->country_id]);
+        $division3 = Division::factory()->create(['division_name'=>'Ligue2','division_country' => $country->country_id]);
+
+        $team = Team::factory()->create(['team_division'=>$division->division_id,'team_budget'=>50,'team_power'=>80,'team_country'=> $country->country_id]);
+        Team::factory()->create(['team_division'=>$division2->division_id,'team_budget'=>50,'team_power'=>80,'team_country'=> $country->country_id]);
+        Team::factory()->create(['team_division'=>$division3->division_id,'team_budget'=>50,'team_power'=>80,'team_country'=> $country->country_id]);
 
         $user = User::factory()->create();
 

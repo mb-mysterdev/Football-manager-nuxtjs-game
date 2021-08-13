@@ -9,13 +9,13 @@
     <v-row>
       <v-col
         v-for="country in filteredCountries"
-        :key="country.name"
+        :key="country.country_name"
         cols="3"
       >
         <country
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/langfr-225px-Flag_of_France.svg.png"
           :height="150"
-          :title="country.name"
+          :title="country.country_name"
           :href="'/france'"
         />
       </v-col>
@@ -31,13 +31,26 @@ export default {
   data () {
     return {
       search: '',
-      countries: { 1: { name: 'France' }, 2: { name: 'Belgique' }, 3: { name: 'Allemagne' }, 4: { name: 'Espagne' } }
+      countries: null
     }
   },
   computed: {
     filteredCountries () {
-      return Object.values(this.countries).filter((country) => {
-        return country.name.toLowerCase().includes(this.search.toLowerCase())
+      if (this.countries !== null) {
+        return this.countries.filter((country) => {
+          return country.country_name.toLowerCase().includes(this.search.toLowerCase())
+        })
+      }
+      return this.countries
+    }
+  },
+  mounted () {
+    this.getCountries()
+  },
+  methods: {
+    async getCountries () {
+      await this.$axios.get('http://localhost/api/countries').then((res) => {
+        this.countries = res.data
       })
     }
   }

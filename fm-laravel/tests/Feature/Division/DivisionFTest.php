@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Country;
 use App\Models\Division;
 use App\Models\FootballMatch;
 use App\Models\Team;
@@ -18,9 +19,11 @@ class DivisionFTest extends TestCase
     }
 
     public function testShowDefaultTeams(){
-        $division = Division::factory()->create();
+        $country = Country::factory()->create(['country_name' => 'France','country_id' => 1]);
 
-        Team::factory(10)->create(['team_division'=>$division->division_id]);
+        $division = Division::factory()->create(['division_country' => $country->country_id]);
+
+        Team::factory(10)->create(['team_division'=>$division->division_id,'team_country'=> $country->country_id]);
 
         $response = $this->getJson("/api/division/$division->division_id")
             ->assertStatus(200);
@@ -28,14 +31,15 @@ class DivisionFTest extends TestCase
     }
 
     public function testShowUserDivisionTeams(){
-        $division = Division::factory()->create();
+        $country = Country::factory()->create(['country_name' => 'France','country_id' => 1]);
+        $division = Division::factory()->create(['division_country' => $country->country_id]);
         $user = User::factory()->create([
             'name' => 'Toto','email'=> 'toto@gmail.com',
             'password'=> 'test',
             "year_in_progress"=> 2021,
             "start_year"=> 2021,
         ]);
-        $myTeam = Team::factory()->create(['team_division'=>$division->division_id,'team_power'=> 85]);
+        $myTeam = Team::factory()->create(['team_division'=>$division->division_id,'team_power'=> 85,'team_country'=> $country->country_id]);
 
         TeamUser::factory()->create([
                 'tu_user'=>$user->id,
@@ -44,7 +48,7 @@ class DivisionFTest extends TestCase
                 'tu_power'=>50
         ]);
 
-        $response = $this->getJson("/api/division/$user->id/$division->division_id")
+        $this->getJson("/api/division/$user->id/$division->division_id")
             ->assertStatus(200)
         ->assertJsonCount(1);
 

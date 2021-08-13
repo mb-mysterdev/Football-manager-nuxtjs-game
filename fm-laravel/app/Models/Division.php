@@ -12,7 +12,7 @@ class Division extends Model
     protected $table = 'divisions';
     protected $primaryKey = 'division_id';
 
-    protected $fillable = ['division_name'];
+    protected $fillable = ['division_name','division_country'];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -41,5 +41,10 @@ class Division extends Model
         ->orderBy('tu_pts', 'desc')
             ->orderBy('tu_db', 'desc')
             ->with('team');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class,'country_id','country_division');
     }
 }

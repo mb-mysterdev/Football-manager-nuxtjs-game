@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Country;
 use App\Models\Division;
 use App\Models\FootballMatch;
 use App\Models\Team;
@@ -23,14 +24,16 @@ class FMFTest extends TestCase
             "year_in_progress"=> 2021,
             "start_year"=> 2021,
         ]);
-        // create two division
-        $division = Division::factory()->create(['division_name'=>'Ligue1']);
-        $division2 = Division::factory()->create(['division_name'=>'Ligue2']);
+        $country = Country::factory()->create(['country_name' => 'France','country_id' => 1]);
 
-        $myTeam = Team::factory()->create(['team_division'=>$division->division_id,'team_name'=>'Liverpool']);
-        $teamLigue1 = Team::factory()->create(['team_division'=>$division->division_id,'team_name'=>'ESS']);
-        $teamLigue2 = Team::factory()->create(['team_division'=>$division2->division_id,'team_name'=>'EST']);
-        $team2Ligue2 = Team::factory()->create(['team_division'=>$division2->division_id,'team_name'=>'PSG']);
+        // create two division
+        $division = Division::factory()->create(['division_name'=>'Ligue1','division_country' => $country->country_id]);
+        $division2 = Division::factory()->create(['division_name'=>'Ligue2','division_country' => $country->country_id]);
+
+        $myTeam = Team::factory()->create(['team_division'=>$division->division_id,'team_name'=>'Liverpool','team_country'=> $country->country_id]);
+        $teamLigue1 = Team::factory()->create(['team_division'=>$division->division_id,'team_name'=>'ESS','team_country'=> $country->country_id]);
+        $teamLigue2 = Team::factory()->create(['team_division'=>$division2->division_id,'team_name'=>'EST','team_country'=> $country->country_id]);
+        $team2Ligue2 = Team::factory()->create(['team_division'=>$division2->division_id,'team_name'=>'PSG','team_country'=> $country->country_id]);
 
         FootballMatch::factory()->createMany([
             ['fm_first_club'=>$myTeam->team_id,'fm_second_club'=>$teamLigue1->team_id,
@@ -56,11 +59,14 @@ class FMFTest extends TestCase
             "start_year"=> 2021,
         ]);
 
-        $division = Division::factory()->create(['division_name'=>'Ligue1']);
-        $division2 = Division::factory()->create(['division_name'=>'Ligue2']);
+        $country = Country::factory()->create(['country_name' => 'France','country_id' => 1]);
 
-        $myTeam = Team::factory()->create(['team_division'=>$division->division_id,'team_name'=>'Liverpool']);
-        $teamLigue1 = Team::factory()->create(['team_division'=>$division2->division_id,'team_name'=>'ESS']);
+        // create two division
+        $division = Division::factory()->create(['division_name'=>'Ligue1','division_country' => $country->country_id]);
+        $division2 = Division::factory()->create(['division_name'=>'Ligue2','division_country' => $country->country_id]);
+
+        $myTeam = Team::factory()->create(['team_division'=>$division->division_id,'team_name'=>'Liverpool','team_country'=> $country->country_id]);
+        $teamLigue1 = Team::factory()->create(['team_division'=>$division2->division_id,'team_name'=>'ESS','team_country'=> $country->country_id]);
 
         FootballMatch::factory()->createMany([
             ['fm_first_club'=>$myTeam->team_id,'fm_second_club'=> $myTeam->team_id,
