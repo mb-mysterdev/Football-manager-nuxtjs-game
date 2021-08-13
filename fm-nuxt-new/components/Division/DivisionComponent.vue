@@ -18,10 +18,18 @@
 export default {
   name: 'DivisonComponent',
   props: {
-    width: Number,
-    src: String,
-    height: Number,
-    title: String
+    width: {
+      default: 0
+    },
+    src: {
+      default: ''
+    },
+    height: {
+      default: 0
+    },
+    title: {
+      default: ''
+    }
   }
 }
 </script>

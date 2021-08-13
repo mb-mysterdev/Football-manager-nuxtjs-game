@@ -18,7 +18,6 @@ export default {
   methods: {
     async playMatch () {
       await this.$axios.get('http://localhost/api/fm/play-match').then((res) => {
-        console.log(res.data)
       })
     }
   }

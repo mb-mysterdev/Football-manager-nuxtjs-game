@@ -91,7 +91,6 @@ export default {
   async mounted () {
     await this.fetchTeams()
     this.transformTeamObjectiveStringToObject()
-    console.log(this.teams)
   },
   methods: {
     transformTeamObjectiveStringToObject () {

@@ -1,24 +1,22 @@
 <template>
-  <div>
-    {{ $route.params }}
-    <v-row>
-      <divison-component
-        v-for="division in divisions"
-        :key="division"
+  <v-row>
+    <v-col v-for="(division,id) in divisions" :key="id">
+      {{ id }}
+      <division-component
         :height="150"
         :width="150"
-        title="div"
+        :title="division.division_name"
         src="https://www.sportbusinessmag.com/wp-content/uploads/2020/12/Ligue-1.png"
       />
-    </v-row>
-  </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
-import DivisonComponent from '@/components/Divison/DivisonComponent'
+import DivisionComponent from '@/components/Division/DivisionComponent'
 export default {
   name: 'CountryDivison',
-  components: { DivisonComponent },
+  components: { DivisionComponent },
   data () {
     return {
       divisions: null
@@ -26,12 +24,11 @@ export default {
   },
   mounted () {
     this.getDivisionWithCountryName()
-    console.log(this.divisions)
   },
   methods: {
     async getDivisionWithCountryName () {
-      await this.$axios.get('http://localhost/api/countries/' + this.$route.params).then((res) => {
-        this.divisions = res.data.divisions
+      await this.$axios.get('http://localhost/api/countries/' + this.$route.params.country_division).then((res) => {
+        this.divisions = res.data[0].divisions
       })
     }
   }
