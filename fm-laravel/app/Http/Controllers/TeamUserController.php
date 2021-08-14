@@ -81,14 +81,14 @@ class TeamUserController extends Controller
             foreach ($item[0] as $team){
                 if($team['team']['team_name'] == $key) {
                     $firstTeamId = $team['team']['team_id'];
-                    $i = 2;
+                    $i = 15;
                     foreach ($item[0] as $teamToCreate){
                         if($teamToCreate['tu_team'] != $firstTeamId && $teamToCreate['tu_division'] === $team['team']['team_division']){
                             FootballMatch::create(
                                 ['fm_first_club'=>$firstTeamId,
                                     'fm_second_club'=> $teamToCreate['tu_team'],
                                     'fm_user' => $teamToCreate['tu_user'],
-                                    'fm_date' => (new Carbon())->subHours($i)
+                                    'fm_date' => (new Carbon())->addMinutes($i)->utc()
                                         ->format('Y-m-d H:i:s'),
                                     'fm_year'=>$teamToCreate['tu_year'],
                                     'fm_division' => $teamToCreate['tu_division']

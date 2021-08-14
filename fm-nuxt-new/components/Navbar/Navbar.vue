@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-app-bar
+      v-if="playerHasTeam"
       color="accent-4"
       dense
       height="20px"
@@ -10,7 +11,7 @@
         :team-name="teamName"
         :team-power="team.tu_power"
         :team-budget="team.tu_budget"
-        :team-ranking-in-official-division="3"
+        :team-ranking-in-official-division="team.tu_ranking"
       />
     </v-app-bar>
     <v-app-bar
@@ -21,20 +22,20 @@
       <v-tabs align-with-title>
         <v-tab>
           <nuxt-link to="/">
-            Home
+            Accueil
           </nuxt-link>
         </v-tab>
-        <v-tab>
+        <v-tab v-if="playerHasTeam">
           <nuxt-link to="/ranking">
             Classement
           </nuxt-link>
         </v-tab>
-        <v-tab>
+        <v-tab v-if="playerHasTeam">
           <nuxt-link to="/season">
             Saison
           </nuxt-link>
         </v-tab>
-        <v-tab>
+        <v-tab v-if="playerHasTeam">
           <nuxt-link to="/calendar">
             Calendrier
           </nuxt-link>
@@ -50,23 +51,20 @@ export default {
   name: 'Navbar',
   components: { TeamSpeedInfoComponent },
   data: () => ({
-    items: [
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me 2' }
-    ],
     user: {
       type: Object
     },
     teamName: '',
-    team: {
-      default () {
-        return { tu_power: 0, tu_budget: 0, tu_name: '' }
-      },
-      type: Object
-    }
+    team: { tu_power: 0, tu_budget: 0, tu_ranking: 0, tu_name: '' }
   }),
+  computed: {
+    playerHasTeam () {
+      if (!this.team.tu_power && !this.team.tu_budget && this.team.tu_name === '') {
+        return false
+      }
+      return true
+    }
+  },
   async mounted () {
     await this.getUser()
     this.teamName = ''

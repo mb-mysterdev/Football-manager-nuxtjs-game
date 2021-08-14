@@ -1,14 +1,15 @@
 <template>
-  <div>
+  <div v-if="userHasTeams" class="mt-16">
     <div v-if="!userHasTeams">
-      <div>Pas de match prochainement</div>
       <home-choice-team />
     </div>
-    <div v-if="userHasTeams && nextMatch !== null">
-      <div class="d-flex justify-center">
+    <div v-else-if="userHasTeams && nextMatch !== '' && nextMatch.first_team !== null">
+      <div class="d-flex justify-center mb-5">
         Prochain Match
       </div>
-      <div><soccer-game :next-match="nextMatch" /></div>
+      <div>
+        <soccer-game :next-match="nextMatch" />
+      </div>
     </div>
   </div>
 </template>
@@ -22,13 +23,11 @@ export default {
   components: { SoccerGame, HomeChoiceTeam },
   data () {
     return {
-      userHasTeams: Boolean,
+      userHasTeams: null,
       user: {
         type: Object
       },
-      nextMatch: {
-        type: Object
-      }
+      nextMatch: { first_team: null, second_team: null, fm_date: null }
     }
   },
   async created () {

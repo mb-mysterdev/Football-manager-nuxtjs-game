@@ -12,7 +12,8 @@ class Team extends Model
     protected $primaryKey = 'team_id';
     protected $table = 'teams';
 
-    protected $fillable= ['team_name'];
+    protected $fillable= ['team_name','team_power','team_budget','team_objective',
+        'team_division','team_logo','team_country','team_min_level','team_min_popularity'];
     /**
      * The attributes that should be hidden for arrays.
      *

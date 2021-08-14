@@ -1,17 +1,23 @@
 <template>
   <div>
     <v-container
-      class="px-0"
       fluid
     >
-      <div>Display by</div>
+      <div class="d-flex justify-center">
+        <h2>
+          Choisir une équipe
+        </h2>
+      </div>
       <v-radio-group v-model="radioGroup">
-        <v-radio
-          v-for="n in listDisplayBy"
-          :key="n.id"
-          :label="` ${n.name}`"
-          :value="n.id"
-        />
+        <div class="d-flex justify-center">
+          <v-radio
+            v-for="n in listDisplayBy"
+            :key="n.id"
+            class="pr-3"
+            :label="` ${n.name}`"
+            :value="n.id"
+          />
+        </div>
       </v-radio-group>
     </v-container>
     <home-eligible-teams v-if="radioGroup === 1" />
@@ -28,7 +34,7 @@ export default {
   data () {
     return {
       radioGroup: 1,
-      listDisplayBy: [{ id: 1, name: 'Available Team' }, { id: 2, name: 'Country' }]
+      listDisplayBy: [{ id: 1, name: 'Par équipe eligible' }, { id: 2, name: 'Par Pays' }]
     }
   }
 }

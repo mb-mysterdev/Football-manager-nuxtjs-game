@@ -1,8 +1,9 @@
 <template>
   <v-app
     style="
-  background-image: url('https://www.ledgerinsights.com/wp-content/uploads/2021/03/football-soccer-810x524.jpg');
-  background-repeat: no-repeat;background-size: contain"
+  background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/10/Football-Live-Wallpapers-HD-Free-Download-2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;"
   >
     <navbar />
     <nuxt />

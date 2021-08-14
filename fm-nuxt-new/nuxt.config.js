@@ -3,8 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - fm-nuxt-new',
-    title: 'fm-nuxt-new',
+    titleTemplate: 'Football Boss',
+    title: 'Football Boss',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -12,7 +12,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: 'https://www.pikpng.com/pngl/b/122-1224312_nike-pitch-team-soccer-ball-nike-football-clipart.png' }
     ]
   },
 

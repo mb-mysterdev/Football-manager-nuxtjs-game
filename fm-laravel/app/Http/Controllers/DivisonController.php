@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Division;
 use App\Models\TeamUser;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class DivisonController extends Controller
 {

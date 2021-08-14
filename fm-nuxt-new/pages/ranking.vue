@@ -25,7 +25,6 @@ export default {
   },
   methods: {
     getMyTeam () {
-      console.log(this.division)
       return this.division.teams.filter((team) => { return team.tu_taken && team.tu_active })
     },
     async getDivision () {
