@@ -28,12 +28,17 @@ class FootballMatchController extends Controller
 
     public function nextMatch(Request $request)
     {
+        $teamUser = TeamUser::where('tu_user',$request->id)
+        ->where('tu_taken',1)
+        ->where('tu_active',1)->get();
+        if(empty($teamUser->all())){
+            return [];
+        }
         return FootballMatch::where('fm_user', $request->id)
-            ->where(function ($query) use ($request) {
-                $teamUser = TeamUser::where('tu_user',$request->id)
-                    ->where('tu_taken',1)
-                    ->where('tu_active',1)->get();
-                $query->where('fm_division', $teamUser->first()->tu_division);
+            ->where(function ($query) use ($request,$teamUser) {
+                if($teamUser !== null){
+                    $query->where('fm_division', $teamUser->first()->tu_division);
+                }
             })
             ->whereNull('fm_winner')
             ->where('fm_year', $request->fm_year)

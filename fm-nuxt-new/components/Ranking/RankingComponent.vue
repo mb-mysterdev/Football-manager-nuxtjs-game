@@ -138,7 +138,7 @@ export default {
     division (newVal) {
       Object.assign(this.localItems, newVal)
     },
-    myTeam (newVal, oldVal) {
+    myTeam (newVal) {
       this.selectedTeam = newVal.tu_id
     }
   }

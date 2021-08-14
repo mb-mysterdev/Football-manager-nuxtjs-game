@@ -25,11 +25,12 @@ export default {
   },
   methods: {
     getMyTeam () {
+      console.log(this.division)
       return this.division.teams.filter((team) => { return team.tu_taken && team.tu_active })
     },
     async getDivision () {
       await this.$axios.get('http://localhost/api/division/1/1').then((res) => {
-        this.division = res.data[0]
+        this.division = res.data
       })
     }
   }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Division;
+use App\Models\TeamUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DivisonController extends Controller
 {
@@ -22,11 +24,16 @@ class DivisonController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Division  $divison
-     * @return \Illuminate\Http\Response
      */
     public function showUserDivisionTeams(Request $request)
     {
-        return Division::where('division_id','=',$request->division_id)->with('teams')->get();
+        $teamsOfDivision = Division::where('division_id',$request->division_id)->with('teams')->get()->first();
+        $tempTeamsOfDivision = $teamsOfDivision->toArray();
+        foreach ($tempTeamsOfDivision['teams'] as $key => $division){
+            $division['tu_ranking'] = $key + 1;
+            $tempTeamsOfDivision['teams'][$key] = $division;
+        }
+        return $tempTeamsOfDivision;
     }
 
 }

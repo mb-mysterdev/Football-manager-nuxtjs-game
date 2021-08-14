@@ -12,7 +12,7 @@ class Division extends Model
     protected $table = 'divisions';
     protected $primaryKey = 'division_id';
 
-    protected $fillable = ['division_name','division_country'];
+    protected $fillable = ['division_id','division_name','division_country'];
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -53,7 +53,7 @@ class DivisionFTest extends TestCase
         ->assertJsonCount(1);
 
         $this->assertDatabaseHas(Team::class,['team_power'=>85,'team_id'=>$myTeam->team_id]);
-        $this->assertDatabaseHas(TeamUser::class,['tu_power'=>50,'tu_team'=>$myTeam->team_id]);
+        $this->assertDatabaseHas(TeamUser::class,['tu_ranking'=>1,'tu_power'=>50,'tu_team'=>$myTeam->team_id]);
     }
 
 
