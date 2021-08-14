@@ -40,6 +40,7 @@ class DivisionFTest extends TestCase
             "start_year"=> 2021,
         ]);
         $myTeam = Team::factory()->create(['team_division'=>$division->division_id,'team_power'=> 85,'team_country'=> $country->country_id]);
+        Team::factory()->create(['team_division'=>$division->division_id,'team_power'=> 85,'team_country'=> $country->country_id]);
 
         TeamUser::factory()->create([
                 'tu_user'=>$user->id,
@@ -48,9 +49,9 @@ class DivisionFTest extends TestCase
                 'tu_power'=>50
         ]);
 
-        $this->getJson("/api/division/$user->id/$division->division_id")
-            ->assertStatus(200)
-        ->assertJsonCount(1);
+        $response = $this->getJson("/api/division/$user->id/$division->division_id")
+            ->assertStatus(200);
+        $this->assertEquals(1,count(((array)json_decode($response->getContent()))['teams']));
 
         $this->assertDatabaseHas(Team::class,['team_power'=>85,'team_id'=>$myTeam->team_id]);
         $this->assertDatabaseHas(TeamUser::class,['tu_ranking'=>1,'tu_power'=>50,'tu_team'=>$myTeam->team_id]);

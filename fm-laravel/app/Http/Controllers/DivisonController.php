@@ -32,6 +32,9 @@ class DivisonController extends Controller
         foreach ($tempTeamsOfDivision['teams'] as $key => $division){
             $division['tu_ranking'] = $key + 1;
             $tempTeamsOfDivision['teams'][$key] = $division;
+            TeamUser::where('tu_user',$request->id)
+                ->where('tu_team',$division['tu_team'])
+                ->update(['tu_ranking'=> $key + 1]);
         }
         return $tempTeamsOfDivision;
     }
