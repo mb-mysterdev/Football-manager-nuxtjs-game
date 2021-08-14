@@ -2,8 +2,7 @@
   <div>
     <v-text-field
       v-model="search"
-      label="Solo"
-      placeholder="Placeholder"
+      label="Trouver un pays"
       solo
     />
     <v-row>
@@ -13,10 +12,9 @@
         cols="3"
       >
         <country
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/langfr-225px-Flag_of_France.svg.png"
+          :src="country.country_picture"
           :height="150"
           :title="country.country_name"
-          :href="'/france'"
         />
       </v-col>
     </v-row>

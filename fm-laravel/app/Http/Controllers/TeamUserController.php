@@ -81,7 +81,7 @@ class TeamUserController extends Controller
             foreach ($item[0] as $team){
                 if($team['team']['team_name'] == $key) {
                     $firstTeamId = $team['team']['team_id'];
-                    $i = 15;
+                    $i = 30;
                     foreach ($item[0] as $teamToCreate){
                         if($teamToCreate['tu_team'] != $firstTeamId && $teamToCreate['tu_division'] === $team['team']['team_division']){
                             FootballMatch::create(

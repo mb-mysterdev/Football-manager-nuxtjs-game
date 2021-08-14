@@ -1,5 +1,5 @@
 <template>
-  <div v-if="userHasTeams" class="mt-16">
+  <div class="mt-16">
     <div v-if="!userHasTeams">
       <home-choice-team />
     </div>
@@ -10,6 +10,11 @@
       <div>
         <soccer-game :next-match="nextMatch" />
       </div>
+    </div>
+    <div v-else>
+      <h1 class="d-flex justify-center mb-5 light-green">
+        Bientôt des nouveaux match
+      </h1>
     </div>
   </div>
 </template>

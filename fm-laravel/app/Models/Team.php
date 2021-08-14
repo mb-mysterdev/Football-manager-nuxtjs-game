@@ -30,6 +30,6 @@ class Team extends Model
 
     public function division()
     {
-        return $this->belongsTo(Division::class,'team_division','division_id');
+        return $this->belongsTo(Division::class,'team_division','division_id')->with('country');
     }
 }

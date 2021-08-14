@@ -26,6 +26,9 @@
           {{ i.name }} : {{ i.classement }}
         </div>
       </template>
+      <template #[getItemCountry()]="{ item }">
+        <v-img :src="item.division.country.country_picture" width="50px" />
+      </template>
       <template #top>
         <v-row justify="center" class="mb-5">
           <v-dialog
@@ -60,7 +63,7 @@
 export default {
   name: 'ListTeams',
   props: {
-    teams: []
+    teams: null
   },
   data () {
     return {
@@ -77,6 +80,8 @@ export default {
         { text: 'Power', value: 'team_power' },
         { text: 'Budget (M€)', value: 'team_budget' },
         { text: 'objective', value: 'team_objective' },
+        { text: 'League', value: 'division.division_name' },
+        { text: 'Country', value: 'division.country.country_picture' },
         { text: '', value: 'choice' }
       ]
     }
@@ -120,6 +125,9 @@ export default {
     },
     getTeamInfo () {
       this.dialog = true
+    },
+    getItemCountry () {
+      return 'item.division.country.country_picture'
     }
   }
 }

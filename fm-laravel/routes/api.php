@@ -68,3 +68,4 @@ $router->post('/users',  [UserController::class, 'create']);
 
 // teams
 $router->get('/teams',  [TeamController::class, 'getAll']);
+$router->get('/teams/{id}/eligible',  [TeamController::class, 'eligibleTeams']);

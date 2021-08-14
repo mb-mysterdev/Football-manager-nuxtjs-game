@@ -13,6 +13,7 @@ class Division extends Model
     protected $primaryKey = 'division_id';
 
     protected $fillable = ['division_id','division_name','division_country'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -28,7 +29,7 @@ class Division extends Model
      */
     public function defaultTeams()
     {
-        return $this->hasMany(Team::class,'team_division','division_id');
+        return $this->hasMany(Team::class,'team_division','division_id')->with('division');
     }
 
     /**
@@ -45,6 +46,6 @@ class Division extends Model
 
     public function country()
     {
-        return $this->belongsTo(Country::class,'country_id','country_division');
+        return $this->hasOne(Country::class,'country_id','division_country');
     }
 }

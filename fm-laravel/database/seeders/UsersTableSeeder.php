@@ -22,6 +22,8 @@ class UsersTableSeeder extends Seeder
                 'name' => 'BestManager',
                 'email' => 'bestmanager@fm.fr',
                 'password' => '$2y$10$DgDja2hR97CEs0Ce8djm/.xS1cABGW2bzh0FDUqOjiAoakgoGSkbG',
+                'level' => 10,
+                'popularity' => 5,
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),
             ),
