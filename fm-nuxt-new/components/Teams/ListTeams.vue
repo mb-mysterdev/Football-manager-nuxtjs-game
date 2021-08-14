@@ -59,12 +59,14 @@
 <script>
 export default {
   name: 'ListTeams',
+  props: {
+    teams: []
+  },
   data () {
     return {
       historyOfClub: false,
       labelOfHistoryTeam: 'Teams',
       dialog: false,
-      teams: [],
       headers: [
         {
           text: 'Team',
@@ -74,7 +76,6 @@ export default {
         },
         { text: 'Power', value: 'team_power' },
         { text: 'Budget (M€)', value: 'team_budget' },
-        { text: 'effective', value: 'team_effective' },
         { text: 'objective', value: 'team_objective' },
         { text: '', value: 'choice' }
       ]
@@ -88,22 +89,9 @@ export default {
       return 'Teams'
     }
   },
-  async mounted () {
-    await this.fetchTeams()
-    this.transformTeamObjectiveStringToObject()
-  },
   methods: {
-    transformTeamObjectiveStringToObject () {
-      Object.assign(this.teams, this.teams.map(function (team) {
-        team.team_objective = JSON.parse(team.team_objective)
-        return team
-      }))
-    },
-    async fetchTeams () {
-      await this.$axios.get('http://localhost/api/teams').then((res) => { this.teams = res.data })
-    },
     choiceMyTeam (item) {
-      this.$axios.post('http://localhost/api/team-user',
+      this.$axios.post('http://localhost/api/create-match-team-user',
         {
           tu_user: 1,
           tu_team: item.team_id,
@@ -113,6 +101,7 @@ export default {
           tu_division: item.team_division,
           tu_active: 1
         })
+      this.$router.push('/')
     },
     getItemPower () {
       return 'item.team_power'
@@ -129,7 +118,7 @@ export default {
     getColor (levels) {
       if (levels > 90) { return 'red' } else if (levels > 80) { return 'pink' } else if (levels > 60) { return 'orange' } else { return 'green' }
     },
-    getTeamInfo (team) {
+    getTeamInfo () {
       this.dialog = true
     }
   }

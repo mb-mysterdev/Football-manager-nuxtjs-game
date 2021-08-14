@@ -8,7 +8,8 @@
       <v-list shaped>
         <v-subheader>{{ division.division_name }}</v-subheader>
         <v-list-item-group
-          color="primary"
+          v-model="selectedTeam"
+          active-class="primary-opacity"
         >
           <v-list-item>
             <!-- Team -->
@@ -118,12 +119,16 @@
 export default {
   name: 'RankingComponent',
   props: {
+    myTeam: {
+      default: 1
+    },
     division: {
       type: [Array, Object]
     }
   },
   data () {
     return {
+      selectedTeam: 1,
       localItems: {
         type: [Array, Object]
       }
@@ -132,11 +137,16 @@ export default {
   watch: {
     division (newVal) {
       Object.assign(this.localItems, newVal)
+    },
+    myTeam (newVal, oldVal) {
+      this.selectedTeam = newVal.tu_id
     }
   }
 }
 </script>
 
 <style scoped>
-
+  .primary-opacity {
+    background-color: #8fff9b36 !important;
+  }
 </style>

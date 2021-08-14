@@ -60,7 +60,7 @@ $router->get('/fm/{id}/{team_id}/{fm_year}/next-match',  [FootballMatchControlle
 
 
 // user - team
-$router->post('/team-user',  [TeamUserController::class, 'create']);
+$router->post('/create-match-team-user',  [TeamUserController::class, 'create']);
 
 // Users
 $router->get('/users/{id}',  [UserController::class, 'show']);

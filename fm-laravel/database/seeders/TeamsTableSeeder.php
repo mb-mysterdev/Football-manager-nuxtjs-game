@@ -23,7 +23,7 @@ class TeamsTableSeeder extends Seeder
             array (
                 'team_id' => 1,
                 'team_name' => 'PSG',
-                'team_power' => 80,
+                'team_power' => 95,
                 'team_budget' => 60,
                 'team_objective' => '"{}"',
                 'team_division' => 1,
@@ -36,7 +36,7 @@ class TeamsTableSeeder extends Seeder
                 array (
                     'team_id' => 2,
                     'team_name' => 'OM',
-                    'team_power' => 40,
+                    'team_power' => 85,
                     'team_budget' => 50,
                     'team_objective' => '"{}"',
                     'team_division' => 1,
@@ -49,7 +49,7 @@ class TeamsTableSeeder extends Seeder
                 array (
                     'team_id' => 3,
                     'team_name' => 'Nice',
-                    'team_power' => 40,
+                    'team_power' => 75,
                     'team_budget' => 50,
                     'team_objective' => '"{}"',
                     'team_division' => 1,
@@ -61,11 +61,24 @@ class TeamsTableSeeder extends Seeder
             3 =>
                 array (
                     'team_id' => 4,
-                    'team_name' => 'Rennes',
-                    'team_power' => 60,
+                    'team_name' => 'Sarcelles',
+                    'team_power' => 40,
                     'team_budget' => 50,
                     'team_objective' => '"{}"',
-                    'team_division' => 1,
+                    'team_division' => 2,
+                    'team_country' => 1,
+                    'team_logo' => '',
+                    'created_at' => new \DateTime(),
+                    'updated_at' => new \DateTime(),
+                ),
+            4 =>
+                array (
+                    'team_id' => 5,
+                    'team_name' => 'Rennes',
+                    'team_power' => 68,
+                    'team_budget' => 50,
+                    'team_objective' => '"{}"',
+                    'team_division' => 2,
                     'team_country' => 1,
                     'team_logo' => '',
                     'created_at' => new \DateTime(),

@@ -7,7 +7,7 @@
       class="grey darken-4"
     />
     <v-card-title class="text-h6 text-center">
-      <NuxtLink :to="'user/division/'+title">
+      <NuxtLink :to="'/division/'+id">
         {{ title }}
       </NuxtLink>
     </v-card-title>
@@ -18,6 +18,9 @@
 export default {
   name: 'DivisonComponent',
   props: {
+    id: {
+      default: 0
+    },
     width: {
       default: 0
     },

@@ -37,7 +37,7 @@ export default {
   name: 'SoccerGame',
   props: {
     nextMatch: {
-      type: [Object]
+      default: null
     }
   },
   data () {

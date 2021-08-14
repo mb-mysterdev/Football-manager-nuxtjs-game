@@ -1,8 +1,8 @@
 <template>
   <v-row>
     <v-col v-for="(division,id) in divisions" :key="id">
-      {{ id }}
       <division-component
+        :id="division.division_id"
         :height="150"
         :width="150"
         :title="division.division_name"
