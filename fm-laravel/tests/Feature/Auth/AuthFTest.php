@@ -60,4 +60,84 @@ class AuthFTest extends TestCase
         ])
             ->assertStatus(401);
     }
+
+    /**
+     * @return void
+     */
+    public function testGetMe()
+    {
+        User::factory()->create(["email"=>"test@gmail.com"]);
+
+        $this->postJson("/api/auth/login", [
+            "email"=>"test@gmail.com","password"=> '123456'
+        ]);
+
+        User::factory()->create(["email"=>"test@gmail.com"]);
+        $this->getJson("/api/auth/me")
+            ->assertStatus(200)
+        ->assertJsonFragment(['email'=>"test@gmail.com"]);
+    }
+
+    /**
+     * @return void
+     */
+    public function testCannotGetMeBecauseNotAuth()
+    {
+        User::factory()->create(["email"=>"test@gmail.com"]);
+
+        $this->getJson("/api/auth/me")
+            ->assertStatus(401);
+    }
+
+    /**
+     * @return void
+     */
+    public function testLogout()
+    {
+        User::factory()->create(["email"=>"test@gmail.com"]);
+        $this->postJson("/api/auth/login", [
+            "email"=>"test@gmail.com","password"=> '123456'
+        ])
+            ->assertStatus(200);
+
+        $this->postJson("/api/auth/logout")
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function testCannotLogout()
+    {
+        User::factory()->create(["email"=>"test@gmail.com"]);
+
+        $this->postJson("/api/auth/logout")
+            ->assertStatus(401);
+    }
+
+    /**
+     * @return void
+     */
+    public function testRefresh()
+    {
+        User::factory()->create(["email"=>"test@gmail.com"]);
+        $this->postJson("/api/auth/login", [
+            "email"=>"test@gmail.com","password"=> '123456'
+        ])
+            ->assertStatus(200);
+
+        $this->postJson("/api/auth/refresh")
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function testCannotRefresh()
+    {
+        User::factory()->create(["email"=>"test@gmail.com"]);
+
+        $this->postJson("/api/auth/refresh")
+            ->assertStatus(401);
+    }
 }
