@@ -15,6 +15,7 @@ class TeamUserFTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->user = User::factory()->create(["email"=>"test@gmail.com"]);
     }
 
     public function testGetAllTeams(){
@@ -33,7 +34,7 @@ class TeamUserFTest extends TestCase
 
         $user = User::factory()->create();
 
-        $this->postJson("/api/create-match-team-user", ['tu_team'=>$team->team_id,'tu_user'=>$user->id,'tu_division'=>$division->division_id])
+        $this->actingAs($this->user)->postJson("/api/create-match-team-user", ['tu_team'=>$team->team_id,'tu_user'=>$user->id,'tu_division'=>$division->division_id])
             ->assertStatus(200);
         $this->assertDatabaseHas(\App\Models\TeamUser::class,['tu_team'=>$team->team_id,'tu_user'=>$user->id,'tu_division'=>$division->division_id]);
         $this->assertDatabaseCount(\App\Models\TeamUser::class,10);

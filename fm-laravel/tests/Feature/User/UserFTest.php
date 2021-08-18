@@ -11,6 +11,7 @@ class UserFTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->user = User::factory()->create(["email"=>"test@gmail.com"]);
     }
 
     /**
@@ -24,13 +25,13 @@ class UserFTest extends TestCase
             "year_in_progress"=> Date('Y'),
             "start_year"=> Date('Y'),
         ]);
-        $this->getJson("/api/users/$user->id")
+        $this->actingAs($this->user)->getJson("/api/users/$user->id")
             ->assertStatus(200)
         ->assertJsonFragment($user->toArray());
     }
 
     public function testCreateUser(){
-        $this->postJson("/api/users",
+        $this->actingAs($this->user)->postJson("/api/users",
             ['name' => 'Toto','email'=> 'toto@gmail.com',
             'password'=> 'test',
             "year_in_progress"=> Date('Y'),

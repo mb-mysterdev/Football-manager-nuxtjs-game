@@ -17,6 +17,7 @@ class PlayMatchFTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->user = User::factory()->create(["email"=>"test@gmail.com"]);
     }
 
     public function testPlayMatch(){
@@ -73,7 +74,7 @@ class PlayMatchFTest extends TestCase
                 'fm_division'=>$division2->division_id],
         ]);
 
-        $this->getJson("/api/fm/play-match")
+        $this->actingAs($this->user)->getJson("/api/fm/play-match")
         ->assertStatus(200);
 
         // fm

@@ -16,6 +16,7 @@ class FMFTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->user = User::factory()->create(["email"=>"test@gmail.com"]);
     }
 
     public function testGetMatchOfMyDivision(){
@@ -45,7 +46,7 @@ class FMFTest extends TestCase
                 'fm_division'=>$division2->division_id],
         ]);
 
-        $this->getJson("/api/fm/$user->id/".Date('Y')."/$division->division_id")
+        $this->actingAs($this->user)->getJson("/api/fm/$user->id/".Date('Y')."/$division->division_id")
         ->assertStatus(200)
         ->assertJsonCount(1)
         ->assertJsonFragment(['team_name'=>'Liverpool'])
@@ -113,7 +114,7 @@ class FMFTest extends TestCase
                 'fm_division'=> $division2->division_id],
         ]);
 
-        $this->getJson("/api/fm/$user->id/$myTeam->team_id/".Date('Y')."/next-match")
+        $this->actingAs($this->user)->getJson("/api/fm/$user->id/$myTeam->team_id/".Date('Y')."/next-match")
             ->assertStatus(200)
         ->assertJson(['fm_second_club' => $teamLigue1->team_id]);
     }

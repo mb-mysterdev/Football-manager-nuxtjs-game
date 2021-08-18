@@ -3,6 +3,7 @@
 use App\Models\Country;
 use App\Models\Division;
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -13,6 +14,7 @@ class TeamFTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->user = User::factory()->create(["email"=>"test@gmail.com"]);
     }
 
     public function testGetAllTeams(){
@@ -22,7 +24,7 @@ class TeamFTest extends TestCase
 
         Team::factory(3)->create(['team_division'=>$division->division_id,'team_country'=> $country->country_id]);
 
-        $this->getJson("/api/teams")
+        $this->actingAs($this->user)->getJson("/api/teams")
             ->assertStatus(200)
         ->assertJsonCount(3);
     }

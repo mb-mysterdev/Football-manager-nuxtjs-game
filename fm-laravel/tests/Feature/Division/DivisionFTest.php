@@ -16,7 +16,9 @@ class DivisionFTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->user = User::factory()->create(["email"=>"test@gmail.com"]);
     }
+
 
     public function testShowDefaultTeams(){
         $country = Country::factory()->create(['country_name' => 'France','country_id' => 1]);
@@ -25,7 +27,7 @@ class DivisionFTest extends TestCase
 
         Team::factory(10)->create(['team_division'=>$division->division_id,'team_country'=> $country->country_id]);
 
-        $response = $this->getJson("/api/division/$division->division_id")
+        $response = $this->actingAs($this->user)->getJson("/api/division/$division->division_id")
             ->assertStatus(200);
         $this->assertEquals(10,count(json_decode($response->getContent())[0]->default_teams));
     }
@@ -49,7 +51,7 @@ class DivisionFTest extends TestCase
                 'tu_power'=>50
         ]);
 
-        $response = $this->getJson("/api/division/$user->id/$division->division_id")
+        $response = $this->actingAs($this->user)->getJson("/api/division/$user->id/$division->division_id")
             ->assertStatus(200);
         $this->assertEquals(1,count(((array)json_decode($response->getContent()))['teams']));
 

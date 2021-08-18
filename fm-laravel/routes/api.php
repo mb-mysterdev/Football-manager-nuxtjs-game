@@ -23,49 +23,58 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('auth/login',  [AuthenticationController::class, 'login']);
+Route::post('auth/register',  [AuthenticationController::class, 'register']);
+
 Route::group([
 
-    'middleware' => 'api',
+    'middleware' => 'auth',
     'prefix' => 'auth'
 
 ], function ($router) {
 
-    Route::post('/login',  [AuthenticationController::class, 'login']);
-    Route::post('/register',  [AuthenticationController::class, 'register']);
     Route::post('/logout', [AuthenticationController::class,'logout']);
     Route::post('/refresh', [AuthenticationController::class, 'refresh']);
     Route::get('/me', [AuthenticationController::class,'me']);
 
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::group([
+
+    'middleware' => 'auth',
+
+], function ($router) {
+
+    Route::middleware('auth:api')->get('/user', function (Request $request) {
+        return $request->user();
+    });
 
 // Countries
-$router->get('/countries',  function (){
-    return Country::all();
-});
-$router->get('/countries/{country_name}', [CountryController::class, 'getCountryWithDivisions']);
+    $router->get('/countries',  function (){
+        return Country::all();
+    });
+    $router->get('/countries/{country_name}', [CountryController::class, 'getCountryWithDivisions']);
 
 // division
-$router->get('/division/{division_id}',  [DivisonController::class, 'showDefaultTeams']);
-$router->get('/division/{id}/{division_id}',  [DivisonController::class, 'showUserDivisionTeams']);
+    $router->get('/division/{division_id}',  [DivisonController::class, 'showDefaultTeams']);
+    $router->get('/division/{id}/{division_id}',  [DivisonController::class, 'showUserDivisionTeams']);
 
 // football matches
-$router->get('/fm/{id}/{fm_year}/{fm_division}',  [FootballMatchController::class, 'getMatchOfMyDivision']);
-$router->get('/fm/{id}/{team_id}/{fm_year}/next-match',  [FootballMatchController::class, 'nextMatch']);
+    $router->get('/fm/{id}/{fm_year}/{fm_division}',  [FootballMatchController::class, 'getMatchOfMyDivision']);
+    $router->get('/fm/{id}/{team_id}/{fm_year}/next-match',  [FootballMatchController::class, 'nextMatch']);
     # Play Match
     $router->get('/fm/play-match',  [PlayMatchController::class, 'playMatch']);
 
 
 // user - team
-$router->post('/create-match-team-user',  [TeamUserController::class, 'create']);
+    $router->post('/create-match-team-user',  [TeamUserController::class, 'create']);
 
 // Users
-$router->get('/users/{id}',  [UserController::class, 'show']);
-$router->post('/users',  [UserController::class, 'create']);
+    $router->get('/users/{id}',  [UserController::class, 'show']);
+    $router->post('/users',  [UserController::class, 'create']);
 
 // teams
-$router->get('/teams',  [TeamController::class, 'getAll']);
-$router->get('/teams/{id}/eligible',  [TeamController::class, 'eligibleTeams']);
+    $router->get('/teams',  [TeamController::class, 'getAll']);
+    $router->get('/teams/{id}/eligible',  [TeamController::class, 'eligibleTeams']);
+
+});
