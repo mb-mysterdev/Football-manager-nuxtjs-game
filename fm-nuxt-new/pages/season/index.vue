@@ -7,8 +7,10 @@
 <script>
 import SoccerGameMini from '@/components/SoccerGame/SoccerGameMini'
 export default {
+
   name: 'Index',
   components: { SoccerGameMini },
+  middleware: 'auth',
   data () {
     return {
       matches: {
@@ -21,7 +23,7 @@ export default {
   },
   methods: {
     async getMatches () {
-      await this.$axios.get('http://localhost/api/fm/1/2021/1').then((res) => {
+      await this.$axios.get('http://localhost/api/fm/' + this.$store.$auth.user.id + '/2021/1').then((res) => {
         this.matches = res.data
       })
     }

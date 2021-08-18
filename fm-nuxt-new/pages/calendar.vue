@@ -7,8 +7,10 @@
 <script>
 import FmCalendar from '@/components/FmCalendar'
 export default {
+
   name: 'Calendar',
-  components: { FmCalendar }
+  components: { FmCalendar },
+  middleware: 'auth'
 }
 </script>
 

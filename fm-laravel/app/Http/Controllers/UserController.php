@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function show($id){
-        return User::find($id)->with('team')->get();
+        return User::where('id',$id)->with('team')->get();
     }
 
     public function create(Request $request){

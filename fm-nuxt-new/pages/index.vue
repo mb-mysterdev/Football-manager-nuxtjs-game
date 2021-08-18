@@ -26,6 +26,7 @@ import SoccerGame from '@/components/SoccerGame/SoccerGame'
 export default {
   name: 'Index',
   components: { SoccerGame, HomeChoiceTeam },
+  middleware: 'auth',
   data () {
     return {
       userHasTeams: null,
@@ -46,12 +47,12 @@ export default {
   },
   methods: {
     async getUser () {
-      await this.$axios.get('http://localhost/api/users/1').then((res) => {
+      await this.$axios.get('http://localhost/api/users/' + this.$store.$auth.user.id).then((res) => {
         this.user = res.data
       })
     },
     async getNextMatch () {
-      await this.$axios.get('http://localhost/api/fm/1/1/2021/next-match').then((res) => {
+      await this.$axios.get('http://localhost/api/fm/' + this.$store.$auth.user.id + '/1/2021/next-match').then((res) => {
         this.nextMatch = res.data
       })
     }

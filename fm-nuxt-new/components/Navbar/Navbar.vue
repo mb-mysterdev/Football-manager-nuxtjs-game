@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     async getUser () {
-      await this.$axios.get('http://localhost/api/users/1').then((res) => {
+      await this.$axios.get('http://localhost/api/users/' + this.$store.$auth.user.id).then((res) => {
         this.user = res.data[0]
         if (this.user.team !== null) {
           this.team = this.user.team

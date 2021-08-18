@@ -5,8 +5,10 @@
 <script>
 import ListTeams from '@/components/Teams/ListTeams'
 export default {
+
   name: 'HomeEligibleTeams',
   components: { ListTeams },
+  middleware: 'auth',
   data () {
     return {
       listTeams: []

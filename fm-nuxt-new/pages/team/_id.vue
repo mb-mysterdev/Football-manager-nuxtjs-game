@@ -4,6 +4,8 @@
 <script>
 import TeamComponent from '@/components/Teams/Team/TeamComponent'
 export default {
-  components: { TeamComponent }
+
+  components: { TeamComponent },
+  middleware: 'auth'
 }
 </script>

@@ -147,13 +147,24 @@ export default {
       // Register
       if (this.tab) {
         // if (this.$refs.loginForm.validate()) {
-        this.$axios.post('http://localhost/api/auth/register', { name: this.name, email: this.email, password: this.password })
-        // }
+        this.$axios.post('/api/auth/register', { name: this.name, email: this.email, password: this.password }).then(
+          this.$router.push('/login')
+        )
       }
 
       if (!this.tab) {
-        this.$axios.post('http://localhost/api/auth/login', { email: this.loginEmail, password: this.loginPassword })
-        this.$router.push('/inspire')
+        this.$axios.post('/api/auth/login', { email: this.loginEmail, password: this.loginPassword }).then((res) => {
+          this.$store.commit('modules/auth/FETCH_USER_SUCCESS', { user: res.data.user })
+          this.$auth.setUser(res.data.user)
+          this.$auth.setUserToken(res.data.access_token)
+
+          this.$axios.interceptors.request.use(function (config) {
+            config.headers.Authorization = res.data.access_token
+            return config
+          })
+
+          this.$router.push('/')
+        })
       }
     },
     reset () {

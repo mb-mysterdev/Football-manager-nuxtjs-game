@@ -6,9 +6,18 @@
 
 <script>
 import RankingComponent from '@/components/Ranking/RankingComponent'
+import { mapGetters } from 'vuex'
+
 export default {
+
   name: 'Ranking',
   components: { RankingComponent },
+  computed: {
+    ...mapGetters({
+      user: 'auth/user'
+    })
+  },
+  middleware: 'userTeam',
   data () {
     return {
       division: {
@@ -28,7 +37,7 @@ export default {
       return this.division.teams.filter((team) => { return team.tu_taken && team.tu_active })
     },
     async getDivision () {
-      await this.$axios.get('http://localhost/api/division/1/1').then((res) => {
+      await this.$axios.get('http://localhost/api/division/' + this.$store.$auth.user.id + '/1').then((res) => {
         this.division = res.data
       })
     }

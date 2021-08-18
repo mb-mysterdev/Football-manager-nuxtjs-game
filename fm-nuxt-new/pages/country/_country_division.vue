@@ -15,8 +15,10 @@
 <script>
 import DivisionComponent from '@/components/Division/DivisionComponent'
 export default {
+
   name: 'CountryDivison',
   components: { DivisionComponent },
+  middleware: 'auth',
   data () {
     return {
       divisions: null
