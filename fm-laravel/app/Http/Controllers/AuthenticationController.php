@@ -17,7 +17,7 @@ class AuthenticationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
 
@@ -30,7 +30,6 @@ class AuthenticationController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
-
         $credentials = $request->only(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {

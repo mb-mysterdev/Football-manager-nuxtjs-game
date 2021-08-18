@@ -34,8 +34,7 @@ class TeamUserFTest extends TestCase
         $user = User::factory()->create();
 
         $this->postJson("/api/create-match-team-user", ['tu_team'=>$team->team_id,'tu_user'=>$user->id,'tu_division'=>$division->division_id])
-            ->dump()
-        ->assertStatus(200);
+            ->assertStatus(200);
         $this->assertDatabaseHas(\App\Models\TeamUser::class,['tu_team'=>$team->team_id,'tu_user'=>$user->id,'tu_division'=>$division->division_id]);
         $this->assertDatabaseCount(\App\Models\TeamUser::class,10);
         // Nb of match
