@@ -10,7 +10,6 @@ export default {
 
   name: 'Index',
   components: { SoccerGameMini },
-  middleware: 'auth',
   data () {
     return {
       matches: {

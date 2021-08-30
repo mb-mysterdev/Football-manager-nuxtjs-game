@@ -31,7 +31,6 @@ import HomeEligibleTeams from '@/pages/home-eligible-teams'
 export default {
   name: 'HomeChoiceTeam',
   components: { HomeEligibleTeams, HomeCountry },
-  middleware: 'auth',
   data () {
     return {
       radioGroup: 1,

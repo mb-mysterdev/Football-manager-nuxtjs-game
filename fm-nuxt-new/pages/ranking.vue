@@ -12,7 +12,6 @@ export default {
 
   name: 'Ranking',
   components: { RankingComponent },
-  middleware: 'auth',
   data () {
     return {
       division: {

@@ -8,7 +8,6 @@ export default {
 
   name: 'HomeEligibleTeams',
   components: { ListTeams },
-  middleware: 'auth',
   data () {
     return {
       listTeams: []

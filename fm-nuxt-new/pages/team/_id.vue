@@ -5,7 +5,6 @@
 import TeamComponent from '@/components/Teams/Team/TeamComponent'
 export default {
 
-  components: { TeamComponent },
-  middleware: 'auth'
+  components: { TeamComponent }
 }
 </script>

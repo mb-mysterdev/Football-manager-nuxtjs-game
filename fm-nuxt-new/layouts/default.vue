@@ -1,6 +1,5 @@
 <template>
   <v-app
-    v-if="isOnline"
     style="
   background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/10/Football-Live-Wallpapers-HD-Free-Download-2.jpg');
   background-repeat: no-repeat;
@@ -9,9 +8,6 @@
     <navbar />
     <nuxt />
   </v-app>
-  <div v-else>
-    En attente
-  </div>
 </template>
 <script>
 import Navbar from '~/components/Navbar/Navbar'

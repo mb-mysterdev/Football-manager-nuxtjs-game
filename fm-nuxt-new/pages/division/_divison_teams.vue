@@ -10,7 +10,6 @@ export default {
 
   name: 'DivisonTeams',
   components: { ListTeams },
-  middleware: 'auth',
   data () {
     return {
       teamsOfMyDivision: []

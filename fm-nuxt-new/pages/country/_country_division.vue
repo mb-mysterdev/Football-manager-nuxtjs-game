@@ -18,7 +18,6 @@ export default {
 
   name: 'CountryDivison',
   components: { DivisionComponent },
-  middleware: 'auth',
   data () {
     return {
       divisions: null

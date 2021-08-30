@@ -13,7 +13,7 @@ export default {
   layout: 'empty',
 
   beforeMount () {
-    console.log(this.isOnline)
+    // console.log(this.isOnline)
     // if (this.isOnline) {
     //   this.$router.push('/')
     // }
