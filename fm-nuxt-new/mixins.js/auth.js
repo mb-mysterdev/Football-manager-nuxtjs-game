@@ -4,13 +4,24 @@ export default {
   computed: {
     isOnline () {
       try {
-        return JSON.parse(Cookies.get('user')) !== null
+        return this.cookiesUser !== null && this.token !== null
       } catch (e) {
         return false
       }
     },
     cookiesUser () {
-      return JSON.parse(Cookies.get('user'))
+      try {
+        return JSON.parse(Cookies.get('user'))
+      } catch (e) {
+        return null
+      }
+    },
+    token () {
+      try {
+        return JSON.parse(Cookies.get('token'))
+      } catch (e) {
+        return null
+      }
     }
   }
 }

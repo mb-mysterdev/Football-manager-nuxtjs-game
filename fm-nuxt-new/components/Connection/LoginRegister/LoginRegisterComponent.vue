@@ -155,6 +155,7 @@ export default {
       if (!this.tab) {
         this.$axios.post('/api/auth/login', { email: this.loginEmail, password: this.loginPassword }).then((res) => {
           this.$store.commit('modules/auth/FETCH_USER_SUCCESS', { user: res.data.user })
+          this.$store.commit('modules/auth/SAVE_TOKEN', { token: res.data.access_token })
           this.$auth.setUser(res.data.user)
           this.$auth.setUserToken(res.data.access_token)
           localStorage.setItem('user', JSON.stringify(res.data.user))

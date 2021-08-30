@@ -20,8 +20,10 @@ export default {
   async mounted () {
     if (!this.isOnline) {
       await this.$router.push('/login')
+    } else {
+      await this.$router.push('/')
+      await this.playMatch()
     }
-    await this.playMatch()
   },
   methods: {
     async playMatch () {

@@ -14,9 +14,11 @@
 
 <script>
 
-export default {
-  layout: 'empty',
+import auth from '@/mixins.js/auth'
 
+export default {
+  mixins: [auth],
+  layout: 'empty',
   props: {
     error: {
       type: Object,
@@ -34,6 +36,14 @@ export default {
       this.error.statusCode === 404 ? this.pageNotFound : this.otherError
     return {
       title
+    }
+  },
+
+  async mounted () {
+    if (!this.isOnline) {
+      await this.$router.push('/login')
+    } else {
+      await this.$router.push('/')
     }
   }
 }

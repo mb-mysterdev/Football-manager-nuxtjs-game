@@ -20,7 +20,7 @@ export const getters = {
 export const mutations = {
   'SAVE_TOKEN' (state, { token, remember }) {
     state.token = token
-    Cookies.set('token', token, { expires: remember ? 365 : null })
+    Cookies.set('token', JSON.stringify(token), { expires: remember ? 365 : null })
   },
 
   'FETCH_USER_SUCCESS' (state, { user }) {
@@ -46,12 +46,4 @@ export const mutations = {
     state.user = user
     Cookies.set('user', user, { expires: 365 })
   }
-}
-
-// actions
-export const actions = {
-  saveToken ({ commit, dispatch }, payload) {
-    commit('SAVE_TOKEN', payload)
-  }
-
 }

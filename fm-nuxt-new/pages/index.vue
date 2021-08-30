@@ -22,7 +22,6 @@
 <script>
 import HomeChoiceTeam from '@/pages/home-choice-team'
 import SoccerGame from '@/components/SoccerGame/SoccerGame'
-import Cookies from 'js-cookie'
 import auth from '@/mixins.js/auth'
 
 export default {
@@ -32,13 +31,12 @@ export default {
   data () {
     return {
       userHasTeams: null,
-      user: {
-        type: Object
-      },
+      user: null,
       nextMatch: { first_team: null, second_team: null, fm_date: null }
     }
   },
   async created () {
+    this.user = this.cookiesUser
     await this.getUser()
     this.userHasTeams = this.user[0].team && this.user[0].team.tu_taken === 1 &&
        this.user[0].team.tu_year === 2021 &&
@@ -49,7 +47,6 @@ export default {
   },
   methods: {
     async getUser () {
-      this.user = JSON.parse(Cookies.get('user'))
       await this.$axios.get('http://localhost/api/users/' + this.user.id).then((res) => {
         this.user = res.data
       })
