@@ -1,5 +1,5 @@
 <?php
-namespace Country;
+namespace Continent;
 
 use App\Models\Country;
 use App\Models\Division;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class CountryFTest extends TestCase
+class ContinentFTest extends TestCase
 {
     use RefreshDatabase;
 

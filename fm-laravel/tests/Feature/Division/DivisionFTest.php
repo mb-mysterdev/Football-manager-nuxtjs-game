@@ -1,4 +1,5 @@
 <?php
+namespace Division;
 
 use App\Models\Country;
 use App\Models\Division;

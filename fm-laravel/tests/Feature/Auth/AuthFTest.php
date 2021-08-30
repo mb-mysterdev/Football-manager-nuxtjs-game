@@ -1,4 +1,5 @@
 <?php
+namespace Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

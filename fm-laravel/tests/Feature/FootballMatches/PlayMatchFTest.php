@@ -1,4 +1,5 @@
 <?php
+namespace FootballMatches;
 
 use App\Models\Country;
 use App\Models\Division;
@@ -70,7 +71,7 @@ class PlayMatchFTest extends TestCase
                 'fm_user'=>$user->id,'fm_date'=> (new Carbon())->addDay(),
                 'fm_division'=>$division->division_id],
             ['fm_first_club'=>$teamLigue2->team_id,'fm_second_club'=>$team2Ligue2->team_id,
-                'fm_user'=>$user->id,'fm_date'=> new DateTime('2021-08-11 00:00:00'),
+                'fm_user'=>$user->id,'fm_date'=> new \DateTime('2021-08-11 00:00:00'),
                 'fm_division'=>$division2->division_id],
         ]);
 

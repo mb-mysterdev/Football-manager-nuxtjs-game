@@ -1,4 +1,5 @@
 <?php
+namespace TeamUser;
 
 use App\Models\Country;
 use App\Models\Division;

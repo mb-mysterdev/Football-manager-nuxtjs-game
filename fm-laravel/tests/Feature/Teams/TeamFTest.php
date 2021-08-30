@@ -1,4 +1,5 @@
 <?php
+namespace Teams;
 
 use App\Models\Country;
 use App\Models\Division;
