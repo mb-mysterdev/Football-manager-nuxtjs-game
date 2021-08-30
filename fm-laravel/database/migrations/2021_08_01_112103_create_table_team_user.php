@@ -27,6 +27,9 @@ class CreateTableTeamUser extends Migration
             $table->bigInteger('tu_power')->default(0);
             $table->bigInteger('tu_funds')->default(0);
             $table->bigInteger('tu_value')->default(0);
+            $table->bigInteger('tu_stadium_capacity')->default(0);
+            $table->bigInteger('tu_stadium_ticket_price')->default(0);
+            $table->bigInteger('tu_number_supporters')->default(0);
             $table->timestamps();
         });
     }

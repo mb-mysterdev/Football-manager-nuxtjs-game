@@ -14,12 +14,12 @@ class TeamsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('teams')->delete();
-        
+
         \DB::table('teams')->insert(array (
-            0 => 
+            0 =>
             array (
                 'team_id' => 1,
                 'team_name' => 'PSG',
@@ -33,8 +33,11 @@ class TeamsTableSeeder extends Seeder
                 'team_country' => 1,
                 'team_min_level' => 20,
                 'team_min_popularity' => 5,
+                'team_coach' => 1,
+                'team_director' => 2,
+                'team_trainer_center' => 3,
             ),
-            1 => 
+            1 =>
             array (
                 'team_id' => 2,
                 'team_name' => 'OM',
@@ -48,8 +51,11 @@ class TeamsTableSeeder extends Seeder
                 'team_country' => 1,
                 'team_min_level' => 5,
                 'team_min_popularity' => 1,
+                'team_coach' => 1,
+                'team_director' => 2,
+                'team_trainer_center' => 3,
             ),
-            2 => 
+            2 =>
             array (
                 'team_id' => 3,
                 'team_name' => 'Nice',
@@ -63,8 +69,11 @@ class TeamsTableSeeder extends Seeder
                 'team_country' => 1,
                 'team_min_level' => 3,
                 'team_min_popularity' => 1,
+                'team_coach' => 1,
+                'team_director' => 2,
+                'team_trainer_center' => 3,
             ),
-            3 => 
+            3 =>
             array (
                 'team_id' => 4,
                 'team_name' => 'Sarcelles',
@@ -78,8 +87,11 @@ class TeamsTableSeeder extends Seeder
                 'team_country' => 1,
                 'team_min_level' => 1,
                 'team_min_popularity' => 1,
+                'team_coach' => 1,
+                'team_director' => 2,
+                'team_trainer_center' => 3,
             ),
-            4 => 
+            4 =>
             array (
                 'team_id' => 5,
                 'team_name' => 'Rennes',
@@ -93,8 +105,11 @@ class TeamsTableSeeder extends Seeder
                 'team_country' => 1,
                 'team_min_level' => 2,
                 'team_min_popularity' => 1,
+                'team_coach' => 1,
+                'team_director' => 2,
+                'team_trainer_center' => 3,
             ),
-            5 => 
+            5 =>
             array (
                 'team_id' => 6,
                 'team_name' => 'ESS',
@@ -108,8 +123,11 @@ class TeamsTableSeeder extends Seeder
                 'team_country' => 2,
                 'team_min_level' => 2,
                 'team_min_popularity' => 1,
+                'team_coach' => 1,
+                'team_director' => 2,
+                'team_trainer_center' => 3,
             ),
-            6 => 
+            6 =>
             array (
                 'team_id' => 7,
                 'team_name' => 'EST',
@@ -123,8 +141,11 @@ class TeamsTableSeeder extends Seeder
                 'team_country' => 2,
                 'team_min_level' => 2,
                 'team_min_popularity' => 1,
+                'team_coach' => 1,
+                'team_director' => 2,
+                'team_trainer_center' => 3,
             ),
-            7 => 
+            7 =>
             array (
                 'team_id' => 8,
                 'team_name' => 'CSS',
@@ -138,9 +159,12 @@ class TeamsTableSeeder extends Seeder
                 'team_country' => 2,
                 'team_min_level' => 2,
                 'team_min_popularity' => 1,
+                'team_coach' => 1,
+                'team_director' => 2,
+                'team_trainer_center' => 3,
             ),
         ));
-        
-        
+
+
     }
 }

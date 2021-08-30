@@ -18,6 +18,9 @@ class CreateTeamsTable extends Migration
             $table->string('team_name');
             $table->bigInteger('team_funds')->default(0);
             $table->bigInteger('team_value')->default(0);
+            $table->bigInteger('team_stadium_capacity')->default(0);
+            $table->bigInteger('team_stadium_ticket_price')->default(0);
+            $table->bigInteger('team_number_supporters')->default(0);
             $table->timestamps();
         });
     }

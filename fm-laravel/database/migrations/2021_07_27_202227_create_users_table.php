@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->year('year_in_progress')->default(Date('Y'));
             $table->year('start_year')->default(Date('Y'));
+            $table->string('country')->default('France');
+            $table->string('timezone')->default('France');
             $table->timestamps();
         });
     }

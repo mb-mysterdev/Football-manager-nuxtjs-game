@@ -19,7 +19,10 @@ class UpdateTeamsToAddEligibleLevelAndUpdateUsersToAddLevel extends Migration
         });
         Schema::table('users', function (Blueprint $table) {
             $table->integer('level')->default(0);
+            $table->integer('level_points')->default(0);
+
             $table->integer('popularity')->default(0);
+            $table->integer('popularity_points')->default(0);
         });
     }
 
