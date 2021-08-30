@@ -60,8 +60,11 @@
 </template>
 
 <script>
+import auth from '@/mixins.js/auth'
+
 export default {
   name: 'ListTeams',
+  mixins: [auth],
   props: {
     teams: null
   },
@@ -94,19 +97,21 @@ export default {
       return 'Teams'
     }
   },
+
   methods: {
     choiceMyTeam (item) {
       this.$axios.post('http://localhost/api/create-match-team-user',
         {
-          tu_user: 1,
+          tu_user: this.cookiesUser.id,
           tu_team: item.team_id,
           tu_budget: item.team_budget,
           tu_power: item.team_power,
           tu_taken: 1,
           tu_division: item.team_division,
           tu_active: 1
-        })
-      this.$router.push('/')
+        }).then((res) => {
+        this.$router.go(0)
+      })
     },
     getItemPower () {
       return 'item.team_power'

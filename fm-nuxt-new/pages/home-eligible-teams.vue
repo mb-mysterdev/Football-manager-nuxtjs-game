@@ -4,10 +4,14 @@
 
 <script>
 import ListTeams from '@/components/Teams/ListTeams'
+import auth from '@/mixins.js/auth'
+
 export default {
 
   name: 'HomeEligibleTeams',
+
   components: { ListTeams },
+  mixins: [auth],
   data () {
     return {
       listTeams: []
@@ -18,7 +22,7 @@ export default {
   },
   methods: {
     async eligibleTeams () {
-      await this.$axios.get('http://localhost/api/teams/1/eligible').then((res) => {
+      await this.$axios.get('http://localhost/api/teams/' + this.cookiesUser.id + '/eligible').then((res) => {
         this.listTeams = res.data
       })
     }
