@@ -1,13 +1,13 @@
 import Cookies from 'js-cookie'
 
 // state
-export const state = {
+export const state = () => ({
   user: null,
   /**
    * Last change logs since the user last logged in
    */
   token: Cookies.get('token')
-}
+})
 
 // getters
 export const getters = {

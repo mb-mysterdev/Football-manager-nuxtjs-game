@@ -12,12 +12,7 @@ export default {
 
   name: 'Ranking',
   components: { RankingComponent },
-  computed: {
-    ...mapGetters({
-      user: 'auth/user'
-    })
-  },
-  middleware: 'userTeam',
+  middleware: 'auth',
   data () {
     return {
       division: {
@@ -27,6 +22,11 @@ export default {
         default: null
       }
     }
+  },
+  computed: {
+    ...mapGetters({
+      user: 'auth/user'
+    })
   },
   async mounted () {
     await this.getDivision()
