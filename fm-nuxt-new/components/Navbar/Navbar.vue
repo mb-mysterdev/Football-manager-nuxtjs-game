@@ -47,6 +47,7 @@
 
 <script>
 import TeamSpeedInfoComponent from '@/components/Teams/Team/TeamSpeedInfoComponent'
+import Cookies from 'js-cookie'
 export default {
   name: 'Navbar',
   components: { TeamSpeedInfoComponent },
@@ -74,7 +75,8 @@ export default {
   },
   methods: {
     async getUser () {
-      await this.$axios.get('http://localhost/api/users/' + this.$store.$auth.user.id).then((res) => {
+      this.user = JSON.parse(Cookies.get('user'))
+      await this.$axios.get('http://localhost/api/users/' + this.user.id).then((res) => {
         this.user = res.data[0]
         if (this.user.team !== null) {
           this.team = this.user.team

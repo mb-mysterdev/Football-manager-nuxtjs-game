@@ -25,22 +25,26 @@ export const mutations = {
 
   'FETCH_USER_SUCCESS' (state, { user }) {
     state.user = user
+    Cookies.set('user', JSON.stringify(user), { expires: 365 })
   },
 
   'FETCH_USER_FAILURE' (state) {
     state.token = null
     Cookies.remove('token')
+    Cookies.remove('user')
   },
 
   'LOGOUT' (state) {
     state.user = null
     state.token = null
 
+    Cookies.remove('user')
     Cookies.remove('token')
   },
 
   'UPDATE_USER' (state, { user }) {
     state.user = user
+    Cookies.set('user', user, { expires: 365 })
   }
 }
 

@@ -157,7 +157,7 @@ export default {
           this.$store.commit('modules/auth/FETCH_USER_SUCCESS', { user: res.data.user })
           this.$auth.setUser(res.data.user)
           this.$auth.setUserToken(res.data.access_token)
-
+          localStorage.setItem('user', JSON.stringify(res.data.user))
           this.$axios.interceptors.request.use(function (config) {
             config.headers.Authorization = res.data.access_token
             return config

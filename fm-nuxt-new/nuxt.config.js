@@ -51,7 +51,7 @@ export default {
     baseURL: 'http://localhost/'
   },
   auth: {
-    localStorage: false,
+    localStorage: true,
     cookie: {
       prefix: 'auth.',
       options: {
