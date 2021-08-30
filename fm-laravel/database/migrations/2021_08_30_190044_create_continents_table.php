@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTeamsTable extends Migration
+class CreateContinentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateTeamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('teams', function (Blueprint $table) {
-            $table->bigIncrements('team_id');
-            $table->string('team_name');
-            $table->bigInteger('team_funds')->default(0);
-            $table->bigInteger('team_value')->default(0);
+        Schema::create('continents', function (Blueprint $table) {
+            $table->bigIncrements('continent_id');
+            $table->string('continent_name');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateTeamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('team');
+        Schema::dropIfExists('continents');
     }
 }

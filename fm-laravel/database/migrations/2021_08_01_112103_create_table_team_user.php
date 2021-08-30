@@ -25,6 +25,8 @@ class CreateTableTeamUser extends Migration
                 ->on('teams');
             $table->bigInteger('tu_budget')->default(0);
             $table->bigInteger('tu_power')->default(0);
+            $table->bigInteger('tu_funds')->default(0);
+            $table->bigInteger('tu_value')->default(0);
             $table->timestamps();
         });
     }

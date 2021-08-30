@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ContinentController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DivisonController;
 use App\Http\Controllers\FootballMatchController;
@@ -76,5 +77,8 @@ Route::group([
 // teams
     $router->get('/teams',  [TeamController::class, 'getAll']);
     $router->get('/teams/{id}/eligible',  [TeamController::class, 'eligibleTeams']);
+
+    // continents
+    $router->get('/continents',  [ContinentController::class, 'getAll']);
 
 });
