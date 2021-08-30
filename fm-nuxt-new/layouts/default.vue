@@ -1,7 +1,7 @@
 <template>
   <v-app
     style="
-  background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/10/Football-Live-Wallpapers-HD-Free-Download-2.jpg');
+  background-image: url('https://www.homewallmurals.co.uk/ekmps/shops/allwallpapers/images/paper-photo-wallpaper-football-stadium-champions--[2]-32457-p.jpg');
   background-repeat: no-repeat;
   background-size: cover;"
   >
